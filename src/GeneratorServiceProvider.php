@@ -3,7 +3,7 @@
 namespace LaraPlatform\Generator;
 
 use Illuminate\Support\ServiceProvider;
-use LaraPlatform\Core\Supports\ServicePackage;
+use LaraPlatform\Core\Support\Core\ServicePackage;
 use LaraPlatform\Core\Traits\WithServiceProvider;
 
 class GeneratorServiceProvider extends ServiceProvider
@@ -28,6 +28,30 @@ class GeneratorServiceProvider extends ServiceProvider
     }
     public function extending()
     {
+        add_filter('filter_module_option_module', function ($prev) {
+            $prev['action']['append'] = [
+                ...$prev['action']['append'],
+                [
+                    'title' => 'Tạo File cho module',
+                    'icon' => '<i class="bi bi-magic"></i>',
+                    'permission' => 'core.module.user.permission',
+                    'class' => 'btn-primary',
+                    'type' => 'update',
+                    'action' => function ($id) {
+                        return 'wire:component="core::page.permission.user({\'userId\':\'' . $id . '\'})"';
+                    }
+                ], [
+                    'title' => 'Tao Module mới',
+                    'icon' => '<i class="bi bi-magic"></i>',
+                    'permission' => 'core.permission',
+                    'type' => 'new',
+                    'action' => function () {
+                        return 'wire:component="generator::generator.module.create()"';
+                    }
+                ]
+            ];
+            return $prev;
+        });
         // add_filter('router_admin_prefix', function () {
         //     return '/quan-ly';
         // });
