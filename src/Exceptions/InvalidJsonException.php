@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraPlatform\Generator\Exceptions;
+namespace LaraIO\Generator\Exceptions;
 
 class InvalidJsonException extends \Exception
 {

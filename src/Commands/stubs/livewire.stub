@@ -2,7 +2,7 @@
 
 namespace [namespace];
 
-use LaraPlatform\Core\Livewire\Component;
+use LaraIO\Core\Livewire\Component;
 
 class [class] extends Component
 {

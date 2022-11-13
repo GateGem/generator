@@ -1,8 +1,8 @@
 <?php
 
-namespace LaraPlatform\Generator\Http\Livewire\Generator\Module;
+namespace LaraIO\Generator\Http\Livewire\Generator\Module;
 
-use LaraPlatform\Core\Livewire\Modal;
+use LaraIO\Core\Livewire\Modal;
 
 class Create extends Modal
 {

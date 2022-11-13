@@ -1,10 +1,10 @@
 <?php
 
-namespace LaraPlatform\Generator;
+namespace LaraIO\Generator;
 
 use Illuminate\Support\ServiceProvider;
-use LaraPlatform\Core\Support\Core\ServicePackage;
-use LaraPlatform\Core\Traits\WithServiceProvider;
+use LaraIO\Core\Support\Core\ServicePackage;
+use LaraIO\Core\Traits\WithServiceProvider;
 
 class GeneratorServiceProvider extends ServiceProvider
 {

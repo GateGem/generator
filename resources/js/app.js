@@ -1,1 +1,1 @@
-console.log('LaraPlatform\Generator');
+console.log('LaraIO\Generator');

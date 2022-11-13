@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraPlatform\Generator\Support;
+namespace LaraIO\Generator\Support;
 
 use Illuminate\Filesystem\Filesystem;
-use LaraPlatform\Generator\Exceptions\FileAlreadyExistException;
+use LaraIO\Generator\Exceptions\FileAlreadyExistException;
 
 class FileGenerator extends Generator
 {

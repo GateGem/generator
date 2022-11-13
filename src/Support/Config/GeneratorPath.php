@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraPlatform\Generator\Support\Config;
+namespace LaraIO\Generator\Support\Config;
 
 class GeneratorPath
 {

@@ -1,9 +1,9 @@
 # This is Lara Platform Generator
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laraplatform/generator.svg?style=flat-square)](https://packagist.org/packages/laraplatform/generator)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/laraplatform/generator/run-tests?label=tests)](https://github.com/laraplatform/generator/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/laraplatform/generator/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/laraplatform/generator/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/laraplatform/generator.svg?style=flat-square)](https://packagist.org/packages/laraplatform/generator)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/LaraIO/generator.svg?style=flat-square)](https://packagist.org/packages/LaraIO/generator)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/LaraIO/generator/run-tests?label=tests)](https://github.com/LaraIO/generator/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/LaraIO/generator/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/LaraIO/generator/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/LaraIO/generator.svg?style=flat-square)](https://packagist.org/packages/LaraIO/generator)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
@@ -13,7 +13,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 You can install the package via composer:
 
 ```bash
-composer require laraplatform/generator
+composer require LaraIO/generator
 ```
 
 You can publish and run the migrations with:
@@ -45,8 +45,8 @@ php artisan vendor:publish --tag="generator-views"
 ## Usage
 
 ```php
-$laragenerator = new LaraPlatform\generator();
-echo $laragenerator->echoPhrase('Hello, LaraPlatform!');
+$laragenerator = new LaraIO\generator();
+echo $laragenerator->echoPhrase('Hello, LaraIO!');
 ```
 
 ## Testing
@@ -69,7 +69,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Nguyen Van Hau](https://github.com/laraplatform)
+- [Nguyen Van Hau](https://github.com/LaraIO)
 - [All Contributors](../../contributors)
 
 ## License

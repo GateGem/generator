@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraPlatform\Generator\Support;
+namespace LaraIO\Generator\Support;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;

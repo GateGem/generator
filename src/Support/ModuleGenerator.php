@@ -1,15 +1,15 @@
 <?php
 
-namespace LaraPlatform\Generator\Support;
+namespace LaraIO\Generator\Support;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Console\Command as Console;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use LaraPlatform\Generator\Contracts\ActivatorInterface;
-use LaraPlatform\Generator\FileRepository;
-use LaraPlatform\Generator\Support\Config\GenerateConfigReader;
-use LaraPlatform\Generator\Support\Stub;
+use LaraIO\Generator\Contracts\ActivatorInterface;
+use LaraIO\Generator\FileRepository;
+use LaraIO\Generator\Support\Config\GenerateConfigReader;
+use LaraIO\Generator\Support\Stub;
 
 class ModuleGenerator extends Generator
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraPlatform\Generator\Support\Migrations;
+namespace LaraIO\Generator\Support\Migrations;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
