@@ -1,6 +1,6 @@
 {
-    "name": "LaraIO/generator",
-    "description": "This is Lara Platform Generator",
+    "name": "laraio/generator",
+    "description": "This is Lara Generator",
     "keywords": [
         "LaraIO",
         "laravel",
