@@ -28,25 +28,25 @@ class GeneratorServiceProvider extends ServiceProvider
     }
     public function extending()
     {
-        add_filter('filter_module_option_module', function ($prev) {
+        add_filter('filter_table_option_module', function ($prev) {
             $prev['action']['append'] = [
                 ...$prev['action']['append'],
                 [
-                    'title' => 'Tạo File cho module',
+                    'title' => 'generator::module.action.createFile',
                     'icon' => '<i class="bi bi-magic"></i>',
-                    'permission' => 'core.module.user.permission',
                     'class' => 'btn-primary',
                     'type' => 'update',
-                    'action' => function ($id) {
-                        return 'wire:component="core::page.permission.user({\'userId\':\'' . $id . '\'})"';
+                    'action' => function ($module) {
+                        return 'wire:component="generator::module.create-file({\'module\':\'' . $module . '\'})"';
                     }
                 ], [
-                    'title' => 'Tao Module mới',
+                    'title' => 'generator::module.action.create',
                     'icon' => '<i class="bi bi-magic"></i>',
+                    'class' => 'btn-primary',
                     'permission' => 'core.permission',
                     'type' => 'new',
                     'action' => function () {
-                        return 'wire:component="generator::generator.module.create()"';
+                        return 'wire:component="generator::module.create()"';
                     }
                 ]
             ];

@@ -6,8 +6,6 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Console\Command as Console;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use LaraIO\Generator\Contracts\ActivatorInterface;
-use LaraIO\Generator\FileRepository;
 use LaraIO\Generator\Support\Config\GenerateConfigReader;
 use LaraIO\Generator\Support\Stub;
 
@@ -42,16 +40,9 @@ class ModuleGenerator extends Generator
     protected $console;
 
     /**
-     * The activator instance
-     *
-     * @var ActivatorInterface
-     */
-    protected $activator;
-
-    /**
      * The module instance.
      *
-     * @var \DevHau\Modules\Module
+     * @var \LaraIO\Generator\Module
      */
     protected $module;
 
@@ -79,25 +70,20 @@ class ModuleGenerator extends Generator
     /**
      * The constructor.
      * @param $name
-     * @param FileRepository $module
      * @param Config     $config
      * @param Filesystem $filesystem
      * @param Console    $console
      */
     public function __construct(
         $name,
-        FileRepository $module = null,
         Config $config = null,
         Filesystem $filesystem = null,
-        Console $console = null,
-        ActivatorInterface $activator = null
+        Console $console = null
     ) {
         $this->name = $name;
         $this->config = $config;
         $this->filesystem = $filesystem;
         $this->console = $console;
-        $this->module = $module;
-        $this->activator = $activator;
     }
 
     /**
@@ -162,19 +148,6 @@ class ModuleGenerator extends Generator
         return $this;
     }
 
-    /**
-     * Set the modules activator
-     *
-     * @param ActivatorInterface $activator
-     *
-     * @return $this
-     */
-    public function setActivator(ActivatorInterface $activator)
-    {
-        $this->activator = $activator;
-
-        return $this;
-    }
 
     /**
      * Get the laravel filesystem instance.
@@ -220,30 +193,6 @@ class ModuleGenerator extends Generator
     public function setConsole($console)
     {
         $this->console = $console;
-
-        return $this;
-    }
-
-    /**
-     * Get the module instance.
-     *
-     * @return \DevHau\Modules\Module
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
-
-    /**
-     * Set the module instance.
-     *
-     * @param mixed $module
-     *
-     * @return $this
-     */
-    public function setModule($module)
-    {
-        $this->module = $module;
 
         return $this;
     }
