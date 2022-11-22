@@ -16,6 +16,7 @@ class Create extends Modal
     public function DoWork(){
         $this->hideModal();
         Artisan::call('module:make ' . $this->module_name);
+        $this->refreshData(['module'=>'module']);
     }
     public function render()
     {

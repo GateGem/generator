@@ -37,7 +37,7 @@ class CreateFile extends Modal
     {
         $this->module_name=$module;
         $this->setTitle('Create New Module:'.$module);
-        $this->modal_size = Modal::Small;
+        $this->modal_size = Modal::Large;
     }
     public function DoWork(){
         if (!$this->file_name) {

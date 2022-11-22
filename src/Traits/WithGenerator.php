@@ -379,7 +379,9 @@ trait WithGenerator
     protected function getReplacement($stub)
     {
         $replacements = config('generator.stubs.replacements');
-
+        if($stub=='json-function'){
+            $stub='json';
+        }
         if (!isset($replacements[$stub])) {
             return [];
         }
@@ -421,9 +423,9 @@ trait WithGenerator
             $this->filesystem->makeDirectory($dir, 0775, true);
         }
         if($this->getBaseType()=='module'){
-            $this->filesystem->put($path, $this->getStubContents('json-function'));
-        }else{
             $this->filesystem->put($path, $this->getStubContents('json'));
+        }else{
+            $this->filesystem->put($path, $this->getStubContents('json-function'));
         }
 
         $this->console->info("Created : {$path}");
@@ -433,9 +435,9 @@ trait WithGenerator
      * Remove the default service provider that was added in the module.json file
      * This is needed when a --plain module was created
      */
-    private function cleanModuleJsonFile()
+    private function cleanInfoJsonFile()
     {
-        $path = $this->getPath('module.json');
+        $path = $this->getPath($this->getBaseType().'.json');
 
         $content = $this->filesystem->get($path);
         $namespace = $this->getModuleNamespaceReplacement();

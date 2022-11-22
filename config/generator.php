@@ -72,7 +72,7 @@ return [
                 'PROVIDER_NAMESPACE',
                 'BASE_TYPE_NAME',
             ],
-            'function'=>[ 'BASE_TYPE_NAME'],
+            'function'=>[ 'BASE_TYPE_NAME','STUDLY_NAME'],
             'provider-base' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
         ],
         'gitkeep' => true,

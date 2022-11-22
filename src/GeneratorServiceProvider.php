@@ -28,6 +28,11 @@ class GeneratorServiceProvider extends ServiceProvider
     }
     public function extending()
     {
+        add_filter('filter_table_option_plugin', function ($prev) {
+            if (function_exists('Plugins_Test3_Hello'))
+                Plugins_Test3_Hello();
+            return $prev;
+        });
         add_filter('filter_table_option_module', function ($prev) {
             $prev['action']['append'] = [
                 ...$prev['action']['append'],
