@@ -65,7 +65,7 @@ class ControllerMakeCommand extends GeneratorCommand
             'MODULE'            => $this->getModuleName(),
             'NAME'              => $this->getModuleName(),
             'STUDLY_NAME'       => $module->getStudlyName(),
-            'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            'LARAAPP_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
         ]))->render();
     }
 

@@ -13,6 +13,6 @@ class $CLASS$ extends Model
     
     protected static function newFactory()
     {
-        return \$MODULE_NAMESPACE$\$MODULE$\Database\factories\$NAME$Factory::new();
+        return \$LARAAPP_NAMESPACE$\$BASE_TYPE$\$MODULE$\Database\factories\$NAME$Factory::new();
     }
 }

@@ -2,6 +2,7 @@
 
 use LaraIO\Generator\FileActivator;
 use LaraIO\Generator\Commands;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +13,12 @@ return [
     |
     */
 
-    'namespace' => 'Modules',
+    'namespace' => [
+        'root' => 'LaraApp',
+        'theme' => 'Themes',
+        'module' => 'Modules',
+        'plugin' => 'Plugins',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -27,22 +33,32 @@ return [
         'enabled' => false,
         'path' => base_path('vendor/laraio/generator/src/Commands/stubs'),
         'files' => [
-            'routes/web' => 'Routes/web.php',
-            'routes/api' => 'Routes/api.php',
-            'views/index' => 'Resources/views/index.blade.php',
-            'views/master' => 'Resources/views/layouts/master.blade.php',
-            'scaffold/config' => 'config/config.php',
-            'composer' => 'composer.json',
-            'assets/js/app' => 'Resources/assets/js/app.js',
-            'assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'webpack' => 'webpack.mix.js',
-            'package' => 'package.json',
+            'common'=>[
+                'scaffold/config' => 'config/config.php',
+                'views/index' => 'resources/views/index.blade.php',
+                'assets/js/app' => 'resources/assets/js/app.js',
+                'assets/sass/app' => 'resources/assets/sass/app.scss',
+                'webpack' => 'webpack.mix.js',
+                'package' => 'package.json',
+            ],
+            'module'=>[
+                'routes/web' => 'routes/web.php',
+                'routes/api' => 'routes/api.php',
+                'composer' => 'composer.json',
+                'provider-base' => 'src/$STUDLY_NAME$ServiceProvider.php',
+            ],
+            'theme'=>[
+                'function'=>'function.php'
+            ],
+            'plugin'=>[
+                'function'=>'function.php'
+            ]
         ],
         'replacements' => [
             'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api' => ['LOWER_NAME'],
             'webpack' => ['LOWER_NAME'],
-            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
+            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index' => ['LOWER_NAME'],
             'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
@@ -52,9 +68,12 @@ return [
                 'VENDOR',
                 'AUTHOR_NAME',
                 'AUTHOR_EMAIL',
-                'MODULE_NAMESPACE',
+                'LARAAPP_NAMESPACE',
                 'PROVIDER_NAMESPACE',
+                'BASE_TYPE_NAME',
             ],
+            'function'=>[ 'BASE_TYPE_NAME'],
+            'provider-base' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
         ],
         'gitkeep' => true,
     ],
@@ -160,6 +179,10 @@ return [
         Commands\ListCommand::class,
         Commands\ModuleDeleteCommand::class,
         Commands\ModuleMakeCommand::class,
+        Commands\ThemeDeleteCommand::class,
+        Commands\ThemeMakeCommand::class,
+        Commands\PluginDeleteCommand::class,
+        Commands\PluginMakeCommand::class,
         Commands\FactoryMakeCommand::class,
         Commands\PolicyMakeCommand::class,
         Commands\RequestMakeCommand::class,

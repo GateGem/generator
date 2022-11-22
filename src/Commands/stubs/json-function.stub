@@ -4,10 +4,7 @@
     "description": "",
     "keywords": [],
     "priority": 0,
-    "providers": [
-        "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$\\$PROVIDER_NAMESPACE$\\$STUDLY_NAME$ServiceProvider"
-    ],
     "aliases": {},
-    "files": [],
+    "files": ["function.php"],
     "requires": []
 }

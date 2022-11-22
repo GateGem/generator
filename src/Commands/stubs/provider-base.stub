@@ -1,12 +1,12 @@
 <?php
 
-namespace $NAMESPACE$;
+namespace $LARAAPP_NAMESPACE$\$BASE_TYPE$\$STUDLY_NAME$;
 
 use Illuminate\Support\ServiceProvider;
 use LaraIO\Core\Support\Core\ServicePackage;
 use LaraIO\Core\Traits\WithServiceProvider;
 
-class $CLASS$ extends ServiceProvider
+class $STUDLY_NAME$ServiceProvider extends ServiceProvider
 {
     use WithServiceProvider;
 

@@ -7,21 +7,21 @@ use LaraIO\Generator\Support\BaseGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class ModuleMakeCommand extends Command
+class ThemeMakeCommand extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'module:make';
+    protected $name = 'theme:make';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new module.';
+    protected $description = 'Create a new theme.';
 
     /**
      * Execute the console command.
@@ -32,11 +32,11 @@ class ModuleMakeCommand extends Command
         $success = true;
 
         foreach ($names as $name) {
-            $code = with(new BaseGenerator($name, "module"))
+            $code = with(new BaseGenerator($name, "theme"))
                 ->setFilesystem($this->laravel['files'])
                 ->setConfig($this->laravel['config'])
                 ->setConsole($this)
-                ->setType($this->getModuleType())
+                ->setType($this->getThemeType())
                 ->setActive(!$this->option('disabled'))
                 ->generate();
 
@@ -56,27 +56,27 @@ class ModuleMakeCommand extends Command
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::IS_ARRAY, 'The names of modules will be created.'],
+            ['name', InputArgument::IS_ARRAY, 'The names of themes will be created.'],
         ];
     }
 
     protected function getOptions()
     {
         return [
-            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain module (without some resources).'],
-            ['api', null, InputOption::VALUE_NONE, 'Generate an api module.'],
-            ['web', null, InputOption::VALUE_NONE, 'Generate a web module.'],
-            ['disabled', 'd', InputOption::VALUE_NONE, 'Do not enable the module at creation.'],
-            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the module already exists.'],
+            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain theme (without some resources).'],
+            ['api', null, InputOption::VALUE_NONE, 'Generate an api theme.'],
+            ['web', null, InputOption::VALUE_NONE, 'Generate a web theme.'],
+            ['disabled', 'd', InputOption::VALUE_NONE, 'Do not enable the theme at creation.'],
+            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the theme already exists.'],
         ];
     }
 
     /**
-     * Get module type .
+     * Get theme type .
      *
      * @return string
      */
-    private function getModuleType()
+    private function getThemeType()
     {
         $isPlain = $this->option('plain');
         $isApi = $this->option('api');

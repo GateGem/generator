@@ -3,6 +3,7 @@
 namespace LaraIO\Generator\Commands;
 
 use Illuminate\Console\Command;
+use LaraIO\Core\Facades\Module;
 use Symfony\Component\Console\Input\InputArgument;
 
 class ModuleDeleteCommand extends Command
@@ -12,7 +13,7 @@ class ModuleDeleteCommand extends Command
 
     public function handle(): int
     {
-        $this->laravel['modules']->delete($this->argument('module'));
+        Module::delete($this->argument('module'));
 
         $this->info("Module {$this->argument('module')} has been deleted.");
 

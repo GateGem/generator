@@ -87,7 +87,7 @@ trait CommandHelper
     protected function getModuleNamespace()
     {
         return $this->isCustomModule()
-            ? config("modules-livewire.custom_modules.{$this->module}.module_namespace", $this->module)
+            ? config("modules-livewire.custom_modules.{$this->module}.LARAAPP_NAMESPACE", $this->module)
             : config('modules.namespace', 'Modules');
     }
 
