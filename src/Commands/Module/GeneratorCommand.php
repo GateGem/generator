@@ -36,7 +36,9 @@ abstract class GeneratorCommand extends Command
      */
     protected function getDestinationFilePath()
     {
-        $commandPath = GenerateConfigReader::read('command');
+        $commandPath = GenerateConfigReader::read($this->getConfigName());
+        $this->info($this->getConfigName());
+        $this->info($this->getModuleName());
         return $this->getModule()->getPath( $commandPath->getPath() . '/' . $this->getFileName() . '.php');
     }
 
@@ -114,7 +116,7 @@ abstract class GeneratorCommand extends Command
     /**
      * @return string
      */
-    private function getFileName()
+    protected function getFileName()
     {
         return Str::studly($this->argument('name'));
     }

@@ -249,7 +249,7 @@ trait WithGenerator
         $this->generateFolders();
 
         $this->generateInfoJsonFile();
-
+        $this->base->RegisterApp();
         if ($this->type !== 'plain') {
             $this->generateFiles();
             $this->generateResources();
@@ -276,7 +276,7 @@ trait WithGenerator
         foreach ($this->getFolders() as $key => $folder) {
             $folder = GenerateConfigReader::read($key);
 
-            if ($folder->generate() === false) {
+            if ($folder->generate($this->getBaseType()) === false) {
                 continue;
             }
 
@@ -317,7 +317,7 @@ trait WithGenerator
      */
     public function generateResources()
     {
-        if (GenerateConfigReader::read('seeder')->generate() === true) {
+        if (GenerateConfigReader::read('seeder')->generate($this->getBaseType()) === true) {
             $this->console->call('module:make-seed', [
                 'name' => $this->getName(),
                 'module' => $this->getName(),
@@ -325,7 +325,7 @@ trait WithGenerator
             ]);
         }
 
-        if (GenerateConfigReader::read('provider')->generate() === true) {
+        if (GenerateConfigReader::read('provider')->generate($this->getBaseType()) === true) {
             $this->console->call('module:make-provider', [
                 'name' => $this->getName() . 'ServiceProvider',
                 'module' => $this->getName(),
@@ -336,7 +336,7 @@ trait WithGenerator
             ]);
         }
 
-        if (GenerateConfigReader::read('controller')->generate() === true) {
+        if (GenerateConfigReader::read('controller')->generate($this->getBaseType()) === true) {
             $options = $this->type == 'api' ? ['--api' => true] : [];
             $this->console->call('module:make-controller', [
                 'controller' => $this->getName() . 'Controller',

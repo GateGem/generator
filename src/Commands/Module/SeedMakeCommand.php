@@ -95,6 +95,6 @@ class SeedMakeCommand extends GeneratorCommand
     }
     protected function getConfigName()
     {
-        return 'rules';
+        return 'seeder';
     }
 }

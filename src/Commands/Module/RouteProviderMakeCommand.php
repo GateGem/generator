@@ -55,7 +55,7 @@ class RouteProviderMakeCommand extends GeneratorCommand
         return (new Stub('/route-provider.stub', [
             'NAMESPACE'            => $this->getClassNamespace($module),
             'CLASS'                => $this->getFileName(),
-            'LARAAPP_NAMESPACE'     => $module->config('namespace'),
+            'LARAAPP_NAMESPACE'     => $module->getValue('namespace'),
             'MODULE'               => $this->getModuleName(),
             'CONTROLLER_NAMESPACE' => $this->getControllerNameSpace(),
             'WEB_ROUTES_PATH'      => $this->getWebRoutesPath(),
@@ -67,7 +67,7 @@ class RouteProviderMakeCommand extends GeneratorCommand
     /**
      * @return string
      */
-    private function getFileName()
+    protected function getFileName()
     {
         return 'RouteServiceProvider';
     }
@@ -77,7 +77,7 @@ class RouteProviderMakeCommand extends GeneratorCommand
      */
     protected function getWebRoutesPath()
     {
-        return '/' . $this->laravel['modules']->config('stubs.files.routes/web', 'Routes/web.php');
+        return  '/routes/web.php';
     }
 
     /**
@@ -85,7 +85,7 @@ class RouteProviderMakeCommand extends GeneratorCommand
      */
     protected function getApiRoutesPath()
     {
-        return '/' . $this->laravel['modules']->config('stubs.files.routes/api', 'Routes/api.php');
+        return  '/routes/api.php';
     }
 
     /**
@@ -93,9 +93,9 @@ class RouteProviderMakeCommand extends GeneratorCommand
      */
     private function getControllerNameSpace(): string
     {
-        $module = $this->laravel['modules'];
+        $namespace = $this->getModule()->getValue('namespace');
 
-        return str_replace('/', '\\', $module->config('paths.generator.controller.namespace') ?: $module->config('paths.generator.controller.path', 'Controller'));
+        return str_replace('/', '\\', $namespace . 'Http/Controller');
     }
     protected function getConfigName()
     {

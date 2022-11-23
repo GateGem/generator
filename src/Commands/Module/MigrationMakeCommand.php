@@ -7,13 +7,11 @@ use LaraIO\Generator\Support\Config\GenerateConfigReader;
 use LaraIO\Generator\Support\Migrations\NameParser;
 use LaraIO\Generator\Support\Migrations\SchemaParser;
 use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\WithModuleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class MigrationMakeCommand extends GeneratorCommand
 {
-    use WithModuleCommand;
 
     /**
      * The console command name.
@@ -107,22 +105,11 @@ class MigrationMakeCommand extends GeneratorCommand
         ]);
     }
 
-    /**
-     * @return mixed
-     */
-    protected function getDestinationFilePath()
-    {
-        $path = $this->laravel['modules']->getModulePath($this->getModuleName());
-
-        $generatorPath = GenerateConfigReader::read('migration');
-
-        return $path . $generatorPath->getPath() . '/' . $this->getFileName() . '.php';
-    }
 
     /**
      * @return string
      */
-    private function getFileName()
+    protected function getFileName()
     {
         return date('Y_m_d_His_') . $this->getSchemaName();
     }
@@ -162,5 +149,9 @@ class MigrationMakeCommand extends GeneratorCommand
         }
 
         return 0;
+    }
+    protected function getConfigName()
+    {
+        return 'migration';
     }
 }
