@@ -2,6 +2,9 @@
 
 namespace LaraIO\Generator\Traits;
 
+use Illuminate\Support\Str;
+use LaraIO\Core\Facades\Module;
+
 trait WithModuleCommand
 {
     /**
@@ -12,9 +15,9 @@ trait WithModuleCommand
     public function getModuleName()
     {
         $module = $this->argument('module');
-
-        $module = app('modules')->findOrFail($module);
-
-        return $module->getStudlyName();
+        return  Str::studly($module);
+    }
+    public function getModule(){
+        return Module::find($this->getModuleName());
     }
 }

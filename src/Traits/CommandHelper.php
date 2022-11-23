@@ -4,6 +4,7 @@ namespace LaraIO\Generator\Traits;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use LaraIO\Core\Facades\Module;
 
 trait CommandHelper
 {
@@ -34,7 +35,7 @@ trait CommandHelper
         $moduleName = $this->argument('module');
 
         if ($this->isCustomModule()) {
-            $module = config("modules-livewire.custom_modules.{$moduleName}");
+            $module = config("generator.livewire.custom_modules.{$moduleName}");
 
             $path = $module['path'] ?? '';
 
@@ -51,7 +52,7 @@ trait CommandHelper
             return $moduleName;
         }
 
-        if (!$module = $this->laravel['modules']->find($moduleName)) {
+        if (!$module = Module::find($moduleName)) {
             $this->line("<options=bold,reverse;fg=red> WHOOPS! </> 😳 \n");
             $this->line("<fg=red;options=bold>The {$moduleName} module not found.</>");
 
@@ -71,14 +72,14 @@ trait CommandHelper
     protected function getModuleLowerName()
     {
         return $this->isCustomModule()
-            ? config("modules-livewire.custom_modules.{$this->module}.name_lower", strtolower($this->module))
+            ? config("generator.livewire.custom_modules.{$this->module}.name_lower", strtolower($this->module))
             : $this->module->getLowerName();
     }
 
     protected function getModulePath()
     {
         $path = $this->isCustomModule()
-            ? config("modules-livewire.custom_modules.{$this->module}.path")
+            ? config("generator.livewire.custom_modules.{$this->module}.path")
             : $this->module->getPath();
 
         return strtr($path, ['\\' => '/']);
@@ -87,16 +88,16 @@ trait CommandHelper
     protected function getModuleNamespace()
     {
         return $this->isCustomModule()
-            ? config("modules-livewire.custom_modules.{$this->module}.LARAAPP_NAMESPACE", $this->module)
+            ? config("generator.livewire.custom_modules.{$this->module}.LARAAPP_NAMESPACE", $this->module)
             : config('modules.namespace', 'Modules');
     }
 
     protected function getModuleLivewireNamespace()
     {
-        $moduleLivewireNamespace = config('modules-livewire.namespace', 'Http\\Livewire');
+        $moduleLivewireNamespace = config('generator.livewire.namespace', 'Http\\Livewire');
 
         if ($this->isCustomModule()) {
-            return config("modules-livewire.custom_modules.{$this->module}.namespace", $moduleLivewireNamespace);
+            return config("generator.livewire.custom_modules.{$this->module}.namespace", $moduleLivewireNamespace);
         }
 
         return $moduleLivewireNamespace;
@@ -118,10 +119,10 @@ trait CommandHelper
 
     protected function getModuleLivewireViewDir()
     {
-        $moduleLivewireViewDir = config('modules-livewire.view', 'Resources/views/livewire');
+        $moduleLivewireViewDir = config('generator.livewire.view', 'Resources/views/livewire');
 
         if ($this->isCustomModule()) {
-            $moduleLivewireViewDir = config("modules-livewire.custom_modules.{$this->module}.view", $moduleLivewireViewDir);
+            $moduleLivewireViewDir = config("generator.livewire.custom_modules.{$this->module}.view", $moduleLivewireViewDir);
         }
 
         return $this->getModulePath() . '/' . $moduleLivewireViewDir;
