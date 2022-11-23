@@ -1,14 +1,14 @@
 <?php
 
 return [
-    "title" => "Tạo Module",
+    "title" => "Tạo Plugin",
     "label"=>"Tên Module",
     "action" => [
-        "create" => "Tạo Module",
+        "create" => "Tạo Plugin",
         "createFile" => "Thêm File"
     ],
     "button" => [
-        "save" => "Tạo Module",
+        "save" => "Tạo Plugin",
         "saveFile" => "Tạo File"
     ]
 ];

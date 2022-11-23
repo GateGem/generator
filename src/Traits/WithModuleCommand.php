@@ -11,7 +11,7 @@ trait WithModuleCommand
      */
     public function getModuleName()
     {
-        $module = $this->argument('module') ?: app('modules')->getUsedNow();
+        $module = $this->argument('module');
 
         $module = app('modules')->findOrFail($module);
 

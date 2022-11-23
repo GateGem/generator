@@ -1,14 +1,14 @@
 <?php
 
 return [
-    "title" => "Create Module",
-    "label" => "Module Name",
+    "title" => "Create Plugin",
+    "label"=>"Plugin Name",
     "action" => [
-        "create" => "Create Module",
+        "create" => "Create Plugin",
         "createFile" => "Create File"
     ],
     "button" => [
-        "save" => "Save Module",
+        "save" => "Save Plugin",
         "saveFile" => "Save File"
     ]
 ];

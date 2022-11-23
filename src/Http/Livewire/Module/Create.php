@@ -10,7 +10,7 @@ class Create extends Modal
     public $module_name='';
     public function mount()
     {
-        $this->setTitle('Create New Module');
+        $this->setTitle(__("generator::module.title"));
         $this->modal_size = Modal::Small;
     }
     public function DoWork(){

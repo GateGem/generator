@@ -1,14 +1,14 @@
 <?php
 
 return [
-    "title" => "Create Module",
-    "label" => "Module Name",
+    "title" => "Create Theme",
+    "label"=>"Theme Name",
     "action" => [
-        "create" => "Create Module",
+        "create" => "Create Theme",
         "createFile" => "Create File"
     ],
     "button" => [
-        "save" => "Save Module",
+        "save" => "Save Theme",
         "saveFile" => "Save File"
     ]
 ];

@@ -12,8 +12,8 @@
         <input x-model="file_name" wire:model.defer="file_name" type="text" class="form-control" id="file_name" placeholder="name file">
     </div>
     <div class="form-control text-warning fw-bold fs-6" style="background-color: rgb(56, 43, 95);">
-        php artisan module:make-<span x-text="file_type"></span>  <span x-text="file_name"></span> {{$module_name}}
+        php artisan theme:make-<span x-text="file_type"></span>  <span x-text="file_name"></span> {{$theme_name}}
     </div>
 
-    <div class="text-center p-1 mt-1"><button class="btn btn-primary btn-sm" wire:click="DoWork()">{{__("generator::module.button.saveFile")}}</button></div>
+    <div class="text-center p-1 mt-1"><button class="btn btn-primary btn-sm" wire:click="DoWork()">{{__("generator::theme.button.saveFile")}}</button></div>
 </div>
