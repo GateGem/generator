@@ -33,25 +33,26 @@ return [
         'enabled' => false,
         'path' => base_path('vendor/laraio/generator/src/Commands/stubs'),
         'files' => [
-            'common'=>[
-                'scaffold/config' => 'config/config.php',
+            'common' => [
+                'index-html' => 'public/index.html',
+                'scaffold/config' => 'config/$LOWER_NAME$.php',
                 'views/index' => 'resources/views/index.blade.php',
                 'assets/js/app' => 'resources/assets/js/app.js',
                 'assets/sass/app' => 'resources/assets/sass/app.scss',
                 'webpack' => 'webpack.mix.js',
-                'package' => 'package.json',
+                'package' => 'package.json'
             ],
-            'module'=>[
+            'module' => [
                 'routes/web' => 'routes/web.php',
                 'routes/api' => 'routes/api.php',
                 'composer' => 'composer.json',
                 'provider-base' => 'src/$STUDLY_NAME$ServiceProvider.php',
             ],
-            'theme'=>[
-                'function'=>'function.php'
+            'theme' => [
+                'function' => 'function.php'
             ],
-            'plugin'=>[
-                'function'=>'function.php'
+            'plugin' => [
+                'function' => 'function.php'
             ]
         ],
         'replacements' => [
@@ -61,7 +62,7 @@ return [
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index' => ['LOWER_NAME'],
             'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'scaffold/config' => ['STUDLY_NAME'],
+            'scaffold/config' => ['STUDLY_NAME', 'LOWER_NAME'],
             'composer' => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
@@ -72,8 +73,9 @@ return [
                 'PROVIDER_NAMESPACE',
                 'BASE_TYPE_NAME',
             ],
-            'function'=>[ 'BASE_TYPE_NAME','STUDLY_NAME'],
+            'function' => ['BASE_TYPE_NAME', 'STUDLY_NAME'],
             'provider-base' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
+            'index-html' => ['LOWER_NAME'],
         ],
         'gitkeep' => true,
     ],

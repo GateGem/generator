@@ -379,8 +379,8 @@ trait WithGenerator
     protected function getReplacement($stub)
     {
         $replacements = config('generator.stubs.replacements');
-        if($stub=='json-function'){
-            $stub='json';
+        if ($stub == 'json-function') {
+            $stub = 'json';
         }
         if (!isset($replacements[$stub])) {
             return [];
@@ -422,9 +422,9 @@ trait WithGenerator
         if (!$this->filesystem->isDirectory($dir = dirname($path))) {
             $this->filesystem->makeDirectory($dir, 0775, true);
         }
-        if($this->getBaseType()=='module'){
+        if ($this->getBaseType() == 'module') {
             $this->filesystem->put($path, $this->getStubContents('json'));
-        }else{
+        } else {
             $this->filesystem->put($path, $this->getStubContents('json-function'));
         }
 
@@ -437,7 +437,7 @@ trait WithGenerator
      */
     private function cleanInfoJsonFile()
     {
-        $path = $this->getPath($this->getBaseType().'.json');
+        $path = $this->getPath($this->getBaseType() . '.json');
 
         $content = $this->filesystem->get($path);
         $namespace = $this->getModuleNamespaceReplacement();
@@ -483,6 +483,7 @@ trait WithGenerator
     {
         return strtolower($this->baseType);
     }
+    private $BaseTypeReplacement;
     /**
      * Get the module name in studly case.
      *
@@ -490,7 +491,7 @@ trait WithGenerator
      */
     protected function getBaseTypeReplacement()
     {
-        return config('generator.namespace.' . $this->baseType);
+        return $this->BaseTypeReplacement ?? ($this->BaseTypeReplacement = config('generator.namespace.' . $this->baseType, config('core.appdir.' . $this->baseType)));
     }
     /**
      * Get the module name in studly case.
@@ -541,9 +542,10 @@ trait WithGenerator
     {
         return config('generator.composer.author.email');
     }
+    private $LaraappNamespaceReplacement;
     protected function getLaraappNamespaceReplacement(): string
     {
-        return config('generator.namespace.root');
+        return $this->LaraappNamespaceReplacement ?? ($this->LaraappNamespaceReplacement = config('generator.namespace.root', config('core.appdir.root')));
     }
     protected function getProviderNamespaceReplacement(): string
     {

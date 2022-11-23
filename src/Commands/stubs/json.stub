@@ -3,9 +3,10 @@
     "alias": "$LOWER_NAME$",
     "description": "",
     "keywords": [],
-    "priority": 0,
+    "priority": 100,
+    "namespace":"$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$",
     "providers": [
-        "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$\\$PROVIDER_NAMESPACE$\\$STUDLY_NAME$ServiceProvider"
+        "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$\\$STUDLY_NAME$ServiceProvider"
     ],
     "aliases": {},
     "files": [],

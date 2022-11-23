@@ -3,7 +3,7 @@
     "alias": "$LOWER_NAME$",
     "description": "",
     "keywords": [],
-    "priority": 0,
+    "priority": 200,
     "aliases": {},
     "files": ["function.php"],
     "requires": []

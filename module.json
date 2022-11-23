@@ -1,0 +1,13 @@
+{
+  "name": "Dfdfdf",
+  "alias": "dfdfdf",
+  "description": "",
+  "keywords": [],
+  "priority": 0,
+  "namespace":"LaraIO\\Generator",
+  "providers": ["LaraIO\\Generator\\GeneratorServiceProvider"],
+  "aliases": [],
+  "files": [],
+  "requires": [],
+  "status": 1
+}
