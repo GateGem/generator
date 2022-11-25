@@ -4,17 +4,20 @@ namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Support\Str;
 use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class ModelMakeCommand extends GeneratorCommand
+class ModelMakeCommand extends Command
 {
+    use WithGeneratorStub;
     /**
      * The name of argument name.
      *
      * @var string
      */
-    protected $argumentName = 'model';
+    protected $argumentName = 'name';
 
     /**
      * The console command name.
@@ -32,9 +35,8 @@ class ModelMakeCommand extends GeneratorCommand
 
     public function handle(): int
     {
-        if (parent::handle() === E_ERROR) {
-            return E_ERROR;
-        }
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('model');
 
         $this->handleOptionalMigrationOption();
         $this->handleOptionalControllerOption();
@@ -50,7 +52,7 @@ class ModelMakeCommand extends GeneratorCommand
      */
     private function createMigrationName()
     {
-        $pieces = preg_split('/(?=[A-Z])/', $this->argument('model'), -1, PREG_SPLIT_NO_EMPTY);
+        $pieces = preg_split('/(?=[A-Z])/', $this->argument('name'), -1, PREG_SPLIT_NO_EMPTY);
 
         $string = '';
         foreach ($pieces as $i => $piece) {
@@ -142,7 +144,7 @@ class ModelMakeCommand extends GeneratorCommand
      */
     private function getModelName()
     {
-        return Str::studly($this->argument('model'));
+        return Str::studly($this->argument('name'));
     }
 
     /**

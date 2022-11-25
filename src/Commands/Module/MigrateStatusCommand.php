@@ -4,7 +4,6 @@ namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
 use LaraIO\Generator\Migrations\Migrator;
-use LaraIO\Generator\Module;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -59,16 +58,16 @@ class MigrateStatusCommand extends Command
     /**
      * Run the migration from the specified module.
      *
-     * @param Module $module
+     * @param $module
      */
-    protected function migrateStatus(Module $module)
+    protected function migrateStatus($module)
     {
-        $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
+        // $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
 
-        $this->call('migrate:status', [
-            '--path' => $path,
-            '--database' => $this->option('database'),
-        ]);
+        // $this->call('migrate:status', [
+        //     '--path' => $path,
+        //     '--database' => $this->option('database'),
+        // ]);
     }
 
     /**

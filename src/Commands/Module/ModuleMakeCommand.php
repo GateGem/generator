@@ -3,12 +3,13 @@
 namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Support\BaseGenerator;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class ModuleMakeCommand extends Command
 {
+    use WithGeneratorStub;
     /**
      * The console command name.
      *
@@ -22,31 +23,7 @@ class ModuleMakeCommand extends Command
      * @var string
      */
     protected $description = 'Create a new module.';
-
-    /**
-     * Execute the console command.
-     */
-    public function handle(): int
-    {
-        $names = $this->argument('name');
-        $success = true;
-
-        foreach ($names as $name) {
-            $code = with(new BaseGenerator($name, "module"))
-                ->setFilesystem($this->laravel['files'])
-                ->setConfig($this->laravel['config'])
-                ->setConsole($this)
-                ->setType($this->getModuleType())
-                ->setActive(!$this->option('disabled'))
-                ->generate();
-
-            if ($code === E_ERROR) {
-                $success = false;
-            }
-        }
-
-        return $success ? 0 : E_ERROR;
-    }
+   
 
     /**
      * Get the console command arguments.
@@ -91,5 +68,29 @@ class ModuleMakeCommand extends Command
         } else {
             return 'web';
         }
+    } public function getFileName()
+    {
+        return  $this->argument('name');
+    }
+    /**
+     * Execute the console command.
+     */
+    public function handle(): int
+    {
+        $this->bootWithGeneratorStub($this->laravel['files']);
+      
+        $names = $this->argument('name');
+        $success = true;
+
+        foreach ($names as $name) {
+            $code = $this->generate($name);
+
+            if ($code === E_ERROR) {
+                $success = false;
+            }
+        }
+        $this->info('done');
+
+        return $success ? 0 : E_ERROR;
     }
 }

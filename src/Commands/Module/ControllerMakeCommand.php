@@ -3,14 +3,14 @@
 namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
-class ControllerMakeCommand extends GeneratorCommand
+class ControllerMakeCommand extends Command
 {
-
+    use WithGeneratorStub;
     /**
      * The name of argument being used.
      *
@@ -32,42 +32,6 @@ class ControllerMakeCommand extends GeneratorCommand
      */
     protected $description = 'Generate new restful controller for the specified module.';
 
-    protected function getConfigName()
-    {
-        return 'controller';
-    }
-    /**
-     * Get controller name.
-     *
-     * @return string
-     */
-    public function getDestinationFilePath()
-    {
-        $commandPath = GenerateConfigReader::read($this->getConfigName());
-        return $this->getModule()->getPath( $commandPath->getPath() . '/' . $this->getControllerName() . '.php');
-    }
-
-    /**
-     * @return string
-     */
-    protected function getTemplateContents()
-    {
-        $module = $this->getModule();
-      
-        return (new Stub($this->getStubName(), [
-            'MODULENAME'        => $module->getStudlyName(),
-            'CONTROLLERNAME'    => $this->getControllerName(),
-            'NAMESPACE'         => $module->getStudlyName(),
-            'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
-            'CLASS'             => $this->getControllerNameWithoutNamespace(),
-            'LOWER_NAME'        => $module->getLowerName(),
-            'MODULE'            => $this->getModuleName(),
-            'NAME'              => $this->getModuleName(),
-            'STUDLY_NAME'       => $module->getStudlyName(),
-            'LARAAPP_NAMESPACE'  => $this->getModule()->getValue('namespace'),
-        ]))->render();
-    }
-
     /**
      * Get the console command arguments.
      *
@@ -76,7 +40,7 @@ class ControllerMakeCommand extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['controller', InputArgument::REQUIRED, 'The name of the controller class.'],
+            ['name', InputArgument::REQUIRED, 'The name of the controller class.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
@@ -92,12 +56,15 @@ class ControllerMakeCommand extends GeneratorCommand
         ];
     }
 
-    /**
-     * @return array|string
-     */
-    protected function getControllerName()
+    public function handle(): int
     {
-        $controller = Str::studly($this->argument('controller'));
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub($this->getStubName());
+        return 0;
+    }
+    protected function getClassReplacement()
+    {
+        $controller = Str::studly($this->argument('name'));
 
         if (Str::contains(strtolower($controller), 'controller') === false) {
             $controller .= 'Controller';
@@ -105,15 +72,6 @@ class ControllerMakeCommand extends GeneratorCommand
 
         return $controller;
     }
-
-    /**
-     * @return array|string
-     */
-    private function getControllerNameWithoutNamespace()
-    {
-        return class_basename($this->getControllerName());
-    }
-
     /**
      * Get the stub file name based on the options
      * @return string
@@ -121,11 +79,11 @@ class ControllerMakeCommand extends GeneratorCommand
     protected function getStubName()
     {
         if ($this->option('plain') === true) {
-            $stub = '/controller-plain.stub';
+            $stub = 'controller-plain';
         } elseif ($this->option('api') === true) {
-            $stub = '/controller-api.stub';
+            $stub = 'controller-api';
         } else {
-            $stub = '/controller.stub';
+            $stub = 'controller';
         }
 
         return $stub;

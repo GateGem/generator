@@ -1,5 +1,5 @@
 {
-    "name": "$VENDOR$/$BASE_TYPE_NAME$-$LOWER_NAME$",
+    "name": "$VENDOR$/$BASE_TYPE_LOWER_NAME$-$LOWER_NAME$",
     "description": "",
     "authors": [
         {
@@ -17,8 +17,8 @@
     },
     "autoload": {
         "psr-4": {
-            "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$\\": "src",
-            "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\Database\\Factories\\": "database/factories"
+            "$NAMESPACE$": "src",
+            "$NAMESPACE$\\Database\\Factories\\": "database/factories"
         }
     }
 }

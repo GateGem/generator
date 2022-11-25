@@ -2,13 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
-class ComponentClassMakeCommand extends GeneratorCommand
+class ComponentClassMakeCommand extends Command
 {
-
+    use WithGeneratorStub;
     /**
      * The name of argument name.
      *
@@ -30,16 +30,8 @@ class ComponentClassMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new component-class for the specified module.';
 
-    public function handle(): int
-    {
-        if (parent::handle() === E_ERROR) {
-            return E_ERROR;
-        }
-        $this->writeComponentViewTemplate();
 
-        return 0;
-    }
-     /**
+    /**
      * Get the console command arguments.
      *
      * @return array
@@ -61,21 +53,22 @@ class ComponentClassMakeCommand extends GeneratorCommand
     {
         $this->call('module:make-component-view', ['name' => $this->argument('name'), 'module' => $this->argument('module')]);
     }
-    protected function getConfigName()
+    public function handle(): int
     {
-        return 'component-class';
-    }
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('component-class');
 
+        $this->writeComponentViewTemplate();
+
+        return 0;
+    }
     /**
-     * @return mixed
+     * Get replacement for $COMPONENT_NAME$.
+     *
+     * @return string
      */
-    protected function getTemplateContents()
+    protected function getComponentNameReplacement()
     {
-        return (new Stub('/component-class.stub', [
-            'NAMESPACE'         => $this->getClassNamespace($this->getModule()),
-            'CLASS'             => $this->getClass(),
-            'LOWER_NAME'        => Str::lower($this->getModuleName()),
-            'COMPONENT_NAME'    => 'components.' . Str::lower($this->argument('name')),
-        ]))->render();
+        return $this->getLowerClassReplacement();
     }
 }

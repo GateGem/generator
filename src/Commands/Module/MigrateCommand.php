@@ -64,22 +64,22 @@ class MigrateCommand extends Command
      */
     protected function migrate($module)
     {
-        $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
+        // $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
 
-        if ($this->option('subpath')) {
-            $path = $path . "/" . $this->option("subpath");
-        }
+        // if ($this->option('subpath')) {
+        //     $path = $path . "/" . $this->option("subpath");
+        // }
 
-        $this->call('migrate', [
-            '--path' => $path,
-            '--database' => $this->option('database'),
-            '--pretend' => $this->option('pretend'),
-            '--force' => $this->option('force'),
-        ]);
+        // $this->call('migrate', [
+        //     '--path' => $path,
+        //     '--database' => $this->option('database'),
+        //     '--pretend' => $this->option('pretend'),
+        //     '--force' => $this->option('force'),
+        // ]);
 
-        if ($this->option('seed')) {
-            $this->call('module:seed', ['module' => $module->getName(), '--force' => $this->option('force')]);
-        }
+        // if ($this->option('seed')) {
+        //     $this->call('module:seed', ['module' => $module->getName(), '--force' => $this->option('force')]);
+        // }
     }
 
     /**

@@ -4,9 +4,9 @@
     "description": "",
     "keywords": [],
     "priority": 100,
-    "namespace":"$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$",
+    "namespace":"$NAMESPACE$",
     "providers": [
-        "$LARAAPP_NAMESPACE$\\$BASE_TYPE$\\$STUDLY_NAME$\\$STUDLY_NAME$ServiceProvider"
+        "$NAMESPACE$\\$STUDLY_NAME$ServiceProvider"
     ],
     "aliases": {},
     "files": [],

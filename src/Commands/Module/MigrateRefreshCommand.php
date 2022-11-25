@@ -3,13 +3,14 @@
 namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithModuleCommand;
+use LaraIO\Core\Facades\Module;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class MigrateRefreshCommand extends Command
 {
-    use WithModuleCommand;
+    use WithGeneratorStub;
 
     /**
      * The console command name.
@@ -93,7 +94,7 @@ class MigrateRefreshCommand extends Command
             return null;
         }
 
-        $module = app('modules')->find($module);
+        $module = Module::find($module);
 
         return $module ? $module->getStudlyName() : null;
     }

@@ -3,14 +3,13 @@
 namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Migrations\Migrator;
-use LaraIO\Generator\Traits\WithMigrationLoader;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class MigrateResetCommand extends Command
 {
-    use WithMigrationLoader;
+    use WithGeneratorStub;
 
     /**
      * The console command name.
@@ -62,27 +61,27 @@ class MigrateResetCommand extends Command
      */
     public function reset($module)
     {
-        if (is_string($module)) {
-            $module = $this->module->findOrFail($module);
-        }
+        // if (is_string($module)) {
+        //     $module = $this->module->findOrFail($module);
+        // }
 
-        $migrator = new Migrator($module, $this->getLaravel());
+        // $migrator = new Migrator($module, $this->getLaravel());
 
-        $database = $this->option('database');
+        // $database = $this->option('database');
 
-        if (!empty($database)) {
-            $migrator->setDatabase($database);
-        }
+        // if (!empty($database)) {
+        //     $migrator->setDatabase($database);
+        // }
 
-        $migrated = $migrator->reset();
+        // $migrated = $migrator->reset();
 
-        if (count($migrated)) {
-            foreach ($migrated as $migration) {
-                $this->line("Rollback: <info>{$migration}</info>");
-            }
+        // if (count($migrated)) {
+        //     foreach ($migrated as $migration) {
+        //         $this->line("Rollback: <info>{$migration}</info>");
+        //     }
 
-            return;
-        }
+        //     return;
+        // }
 
         $this->comment('Nothing to rollback.');
     }

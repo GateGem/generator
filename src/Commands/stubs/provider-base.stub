@@ -1,6 +1,6 @@
 <?php
 
-namespace $LARAAPP_NAMESPACE$\$BASE_TYPE$\$STUDLY_NAME$;
+namespace $NAMESPACE$;
 
 use Illuminate\Support\ServiceProvider;
 use LaraIO\Core\Support\Core\ServicePackage;

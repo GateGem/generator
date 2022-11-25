@@ -2,13 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ComponentViewMakeCommand extends GeneratorCommand
+class ComponentViewMakeCommand  extends Command
 {
+    use WithGeneratorStub;
 
     /**
      * The name of argument name.
@@ -43,23 +43,10 @@ class ComponentViewMakeCommand extends GeneratorCommand
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
-    /**
-     * @return mixed
-     */
-    protected function getTemplateContents()
+    public function handle(): int
     {
-        return (new Stub('/component-view.stub', ['QUOTE' => Inspiring::quote()]))->render();
-    }
-    protected function getConfigName()
-    {
-        return 'component-view';
-    }
-    /**
-     * @return string
-     */
-    protected function getFileName()
-    {
-        return Str::lower($this->argument('name')) . '.blade.php';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('component-view');
+        return 0;
     }
 }

@@ -392,8 +392,8 @@ trait WithGenerator
         if (!in_array('BASE_TYPE', $keys)) {
             $keys[] = 'BASE_TYPE';
         }
-        // if (!in_array('BASE_TYPE_NAME', $keys)) {
-        //     $keys[] = 'BASE_TYPE_NAME';
+        // if (!in_array('BASE_TYPE_LOWER_NAME', $keys)) {
+        //     $keys[] = 'BASE_TYPE_LOWER_NAME';
         // }
 
         if ($stub === 'json' || $stub === 'composer' || $stub === 'provider-base') {

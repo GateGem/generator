@@ -2,14 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
-class CommandMakeCommand extends GeneratorCommand
+class CommandMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     /**
      * The name of argument name.
@@ -31,7 +31,7 @@ class CommandMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $description = 'Generate new Artisan command for the specified module.';
-    
+
     /**
      * Get the console command arguments.
      *
@@ -59,23 +59,25 @@ class CommandMakeCommand extends GeneratorCommand
             ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned.', null],
         ];
     }
-
+   
     /**
-     * @return mixed
+     * Execute the console command.
      */
-    protected function getTemplateContents()
+    public function handle(): int
     {
-        return (new Stub('/command.stub', [
-            'COMMAND_NAME' => $this->getCommandName(),
-            'NAMESPACE'    => $this->getClassNamespace($this->getModule()),
-            'CLASS'        => $this->getClass(),
-        ]))->render();
-    }
+        $this->bootWithGeneratorStub($this->laravel['files']);
 
+        $this->GeneratorFileByStub('command');
+        $this->info('done');
+
+        return 0;
+    }
     /**
+     * Get replacement for $COMMAND_NAME$.
+     *
      * @return string
      */
-    private function getCommandName()
+    protected function getCommandNameReplacement()
     {
         return $this->option('command') ?: 'command:name';
     }

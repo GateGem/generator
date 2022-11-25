@@ -2,11 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class EventMakeCommand extends GeneratorCommand
+class EventMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     protected $argumentName = 'name';
 
@@ -36,17 +38,11 @@ class EventMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new event class for the specified module';
 
-    public function getTemplateContents()
+    public function handle(): int
     {
-
-        return (new Stub('/event.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS' => $this->getClass(),
-        ]))->render();
-    }
-    protected function getConfigName()
-    {
-        return 'event';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('event');
+        return 0;
     }
 
 }

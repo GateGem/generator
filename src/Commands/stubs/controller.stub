@@ -1,6 +1,6 @@
 <?php
 
-namespace $CLASS_NAMESPACE$;
+namespace $NAMESPACE$;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;

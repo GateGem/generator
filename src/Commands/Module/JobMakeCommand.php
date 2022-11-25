@@ -2,16 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\WithModuleCommand;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class JobMakeCommand extends GeneratorCommand
+class JobMakeCommand extends Command
 {
-    use WithModuleCommand;
+    use WithGeneratorStub;
 
     /**
      * The console command name.
@@ -55,17 +53,11 @@ class JobMakeCommand extends GeneratorCommand
         ];
     }
 
-    /**
-     * Get template contents.
-     *
-     * @return string
-     */
-    protected function getTemplateContents()
+    public function handle(): int
     {
-        return (new Stub($this->getStubName(), [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub($this->getStubName());
+        return 0;
     }
 
     /**
@@ -74,13 +66,9 @@ class JobMakeCommand extends GeneratorCommand
     protected function getStubName(): string
     {
         if ($this->option('sync')) {
-            return '/job.stub';
+            return 'job';
         }
 
-        return '/job-queued.stub';
-    }
-    protected function getConfigName()
-    {
-        return 'jobs';
+        return 'job-queued';
     }
 }

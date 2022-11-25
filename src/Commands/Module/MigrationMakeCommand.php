@@ -3,16 +3,17 @@
 namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use LaraIO\Generator\Support\Migrations\NameParser;
 use LaraIO\Generator\Support\Migrations\SchemaParser;
 use LaraIO\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class MigrationMakeCommand extends GeneratorCommand
+class MigrationMakeCommand extends Command
 {
-
+    use WithGeneratorStub;
     /**
      * The console command name.
      *

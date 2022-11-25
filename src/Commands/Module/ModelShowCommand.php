@@ -55,11 +55,11 @@ class ModelShowCommand extends ShowModelCommand
             return $model;
         }
 
-        $rootNamespace = config('modules.namespace');
+        $rootNamespace = config('generator.namespace');
 
         $modelPath = glob($rootNamespace . DIRECTORY_SEPARATOR .
             '*' . DIRECTORY_SEPARATOR .
-            config('modules.paths.generator.model.path') . DIRECTORY_SEPARATOR .
+            config('generator.paths.generator.model.path') . DIRECTORY_SEPARATOR .
             "$model.php");
 
         if (!count($modelPath)) {
@@ -68,5 +68,4 @@ class ModelShowCommand extends ShowModelCommand
 
         return str_replace(['/', '.php'], ['\\', ''], $modelPath[0]);
     }
-
 }

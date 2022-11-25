@@ -34,120 +34,268 @@ return [
         'path' => base_path('vendor/laraio/generator/src/Commands/stubs'),
         'files' => [
             'common' => [
-                'index-html' => 'public/index.html',
-                'scaffold/config' => 'config/$LOWER_NAME$.php',
-                'views/index' => 'resources/views/index.blade.php',
-                'assets/js/app' => 'resources/assets/js/app.js',
-                'assets/sass/app' => 'resources/assets/sass/app.scss',
-                'webpack' => 'webpack.mix.js',
-                'package' => 'package.json'
+                'index-html',
+                'scaffold/config',
+                'views/index',
+                'assets/js/app',
+                'assets/sass/app',
+                'webpack',
+                'package'
             ],
             'module' => [
-                'routes/web' => 'routes/web.php',
-                'routes/api' => 'routes/api.php',
-                'composer' => 'composer.json',
-                'provider-base' => 'src/$STUDLY_NAME$ServiceProvider.php',
+                'routes/web',
+                'routes/api',
+                'composer',
+                'provider-base',
+                'json'
             ],
             'theme' => [
-                'function' => 'function.php'
+                'function',
+                'layout',
+                'layout-none',
+                'json-function'
             ],
             'plugin' => [
-                'function' => 'function.php'
+                'function',
+                'json-function'
             ]
         ],
-        'replacements' => [
-            'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'routes/api' => ['LOWER_NAME'],
-            'webpack' => ['LOWER_NAME'],
-            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
-            'views/index' => ['LOWER_NAME'],
-            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'scaffold/config' => ['STUDLY_NAME', 'LOWER_NAME'],
-            'composer' => [
-                'LOWER_NAME',
-                'STUDLY_NAME',
-                'VENDOR',
-                'AUTHOR_NAME',
-                'AUTHOR_EMAIL',
-                'LARAAPP_NAMESPACE',
-                'PROVIDER_NAMESPACE',
-                'BASE_TYPE_NAME',
+        'templates' => [
+            'index-html' => [
+                'path' => 'public',
+                'name' => 'index.html'
             ],
-            'function' => ['BASE_TYPE_NAME', 'STUDLY_NAME'],
-            'provider-base' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME', 'LARAAPP_NAMESPACE', 'PROVIDER_NAMESPACE'],
-            'index-html' => ['LOWER_NAME'],
+            'scaffold/config' => [
+                'path' => 'config',
+                'name' => '$LOWER_NAME$.php',
+                'replacements' => [
+                    'LOWER_NAME'
+                ]
+            ],
+            'views/index' => [
+                'path' => 'views',
+                'name' => 'index.blade.php'
+            ],
+            'layout' => [
+                'path' => 'views',
+                'name' => 'layout.blade.php'
+            ],
+            'layout-none' => [
+                'path' => 'views',
+                'name' => 'none.blade.php'
+            ],
+            'assets/js/app' => [
+                'path' => 'assets',
+                'name' => 'js/app.js'
+            ],
+            'assets/sass/app' => [
+                'path' => 'assets',
+                'name' => 'sass/app.scss'
+            ],
+            'routes/web' => [
+                'path' => 'routes',
+                'name' => 'web.php',
+                'replacements' => ['LOWER_NAME', 'STUDLY_NAME']
+            ],
+            'routes/api' =>  [
+                'path' => 'routes',
+                'name' => 'api.php',
+                'replacements' => ['LOWER_NAME']
+            ],
+            'provider-base' => [
+                'path' => 'src',
+                'name' => '$STUDLY_NAME$ServiceProvider.php',
+                'replacements' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME']
+            ],
+            'composer' => [
+                'name' => 'composer.json',
+                'doblue' => true,
+                'replacements' => [
+                    'LOWER_NAME',
+                    'STUDLY_NAME',
+                    'VENDOR',
+                    'AUTHOR_NAME',
+                    'AUTHOR_EMAIL',
+                    'NAMESPACE',
+                    'BASE_TYPE_LOWER_NAME'
+                ]
+            ],
+            'webpack' => [
+                'name' => 'webpack.mix.js',
+                'replacements' => [
+                    'LOWER_NAME'
+                ]
+            ],
+            'package' => [
+                'name' => 'package.json',
+                'replacements' => [
+                    'LOWER_NAME'
+                ]
+            ],
+            'function' => [
+                'name' => 'function.php',
+                'replacements' => [
+                    'BASE_TYPE_LOWER_NAME',
+                    'STUDLY_NAME'
+                ]
+            ],
+            'json' => [
+                'name' => '$BASE_TYPE_LOWER_NAME$.json',
+                'doblue' => true,
+                'replacements' => [
+                    'BASE_TYPE_LOWER_NAME',
+                    'STUDLY_NAME',
+                    'LOWER_NAME',
+                    'NAMESPACE'
+                ]
+            ],
+            'json-function' => [
+                'name' => '$BASE_TYPE_LOWER_NAME$.json',
+                'doblue' => true,
+                'replacements' => [
+                    'BASE_TYPE_LOWER_NAME',
+                    'STUDLY_NAME',
+                    'LOWER_NAME',
+                    'NAMESPACE'
+                ]
+            ],
+            'command' => [
+                'path' => 'command',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'COMMAND_NAME',
+                    'CLASS',
+                    'NAMESPACE'
+                ]
+            ],
+            'component-class' => [
+                'path' => 'component-class',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'LOWER_NAME',
+                    'CLASS',
+                    'NAMESPACE',
+                    'COMPONENT_NAME'
+                ]
+            ],
+            'component-view' => [
+                'path' => 'component-view',
+                'name' => '$LOWER_CLASS$.blade.php',
+                'replacements' => [
+                    'LOWER_NAME',
+                    'LOWER_CLASS',
+                    'NAMESPACE',
+                    'QUOTE'
+                ]
+            ],
+            'controller-api' => [
+                'path' => 'controller',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE'
+                ]
+            ],
+            'controller-plain' => [
+                'path' => 'controller',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE'
+                ]
+            ],
+
+            'controller' => [
+                'path' => 'controller',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+
+            'event' => [
+                'path' => 'event',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+            'factory' => [
+                'path' => 'factory',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                    'MODEL_NAMESPACE'
+                ]
+            ],
+            'job' => [
+                'path' => 'job',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+            'job-queued' => [
+                'path' => 'job',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+
+            'model' => [
+                'path' => 'model',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
         ],
         'gitkeep' => true,
     ],
     'paths' => [
-        /*
-        |--------------------------------------------------------------------------
-        | Modules path
-        |--------------------------------------------------------------------------
-        |
-        | This path used for save the generated module. This path also will be added
-        | automatically to list of scanned folders.
-        |
-        */
-
-        'modules' => base_path('Modules'),
-        /*
-        |--------------------------------------------------------------------------
-        | Modules assets path
-        |--------------------------------------------------------------------------
-        |
-        | Here you may update the modules assets path.
-        |
-        */
-
-        'assets' => public_path('modules'),
-        /*
-        |--------------------------------------------------------------------------
-        | The migrations path
-        |--------------------------------------------------------------------------
-        |
-        | Where you run 'module:publish-migration' command, where do you publish the
-        | the migration files?
-        |
-        */
-
-        'migration' => base_path('database/migrations'),
-        /*
-        |--------------------------------------------------------------------------
-        | Generator path
-        |--------------------------------------------------------------------------
-        | Customise the paths where the folders will be generated.
-        | Set the generate key to false to not generate that folder
-        */
-        'generator' => [
-            'config' => ['path' => 'config', 'generate' => true, 'only' => ['module']],
-            'command' => ['path' => 'src/Console/Commands', 'generate' => true, 'only' => ['module']],
-            'migration' => ['path' => 'Database/Migrations', 'generate' => true, 'only' => ['module']],
-            'seeder' => ['path' => 'Database/Seeders', 'generate' => true, 'only' => ['module']],
-            'factory' => ['path' => 'Database/factories', 'generate' => true, 'only' => ['module']],
-            'model' => ['path' => 'src/Models', 'generate' => true, 'only' => ['module']],
-            'routes' => ['path' => 'routes', 'generate' => true, 'only' => ['module']],
-            'controller' => ['path' => 'src/Http/Controllers', 'generate' => true, 'only' => ['module']],
-            'filter' => ['path' => 'src/Http/Middleware', 'generate' => true, 'only' => ['module']],
-            'request' => ['path' => 'src/Http/Requests', 'generate' => true, 'only' => ['module']],
-            'provider' => ['path' => 'src/Providers', 'generate' => true, 'only' => ['module']],
-            'assets' => ['path' => 'resources/assets', 'generate' => true],
-            'lang' => ['path' => 'resources/lang', 'generate' => true],
-            'views' => ['path' => 'resources/views', 'generate' => true],
-            'test' => ['path' => 'Tests/Unit', 'generate' => true, 'only' => ['module']],
-            'test-feature' => ['path' => 'Tests/Feature', 'generate' => true, 'only' => ['module']],
-            'repository' => ['path' => 'src/Repositories', 'generate' => false, 'only' => ['module']],
-            'event' => ['path' => 'src/Events', 'generate' => false, 'only' => ['module']],
-            'listener' => ['path' => 'src/Listeners', 'generate' => false, 'only' => ['module']],
-            'policies' => ['path' => 'src/Policies', 'generate' => false, 'only' => ['module']],
-            'rules' => ['path' => 'src/Rules', 'generate' => false, 'only' => ['module']],
-            'jobs' => ['path' => 'src/Jobs', 'generate' => false, 'only' => ['module']],
-            'emails' => ['path' => 'src/Emails', 'generate' => false, 'only' => ['module']],
-            'notifications' => ['path' => 'src/Notifications', 'generate' => false, 'only' => ['module']],
-            'resource' => ['path' => 'src/Transformers', 'generate' => false, 'only' => ['module']],
-            'component-view' => ['path' => 'resources/views/components', 'generate' => false, 'only' => ['module']],
-            'component-class' => ['path' => 'src/View/Components', 'generate' => false, 'only' => ['module']],
-        ],
+        'base' => ['path' => '', 'namespace' => '', 'generate' => false],
+        'src' => ['path' => 'src', 'namespace' => '', 'generate' => false],
+        'config' => ['path' => 'config', 'generate' => true, 'only' => ['module']],
+        'command' => ['path' => 'src/Console/Commands', 'namespace' => 'Console\\Commands', 'generate' => true, 'only' => ['module']],
+        'migration' => ['path' => 'Database/Migrations', 'namespace' => 'Database\\Migrations', 'generate' => true, 'only' => ['module']],
+        'seeder' => ['path' => 'Database/Seeders', 'namespace' => 'Database\\Seeders', 'generate' => true, 'only' => ['module']],
+        'factory' => ['path' => 'Database/factories', 'namespace' => 'Database\\Factories', 'generate' => true, 'only' => ['module']],
+        'model' => ['path' => 'src/Models', 'namespace' => 'Models', 'generate' => true, 'only' => ['module']],
+        'routes' => ['path' => 'routes', 'generate' => true, 'only' => ['module']],
+        'controller' => ['path' => 'src/Http/Controllers', 'namespace' => 'Http\\Controllers', 'generate' => true, 'only' => ['module']],
+        'filter' => ['path' => 'src/Http/Middleware', 'namespace' => 'Http\\Middleware', 'generate' => true, 'only' => ['module']],
+        'request' => ['path' => 'src/Http/Requests', 'namespace' => 'Http\\Requests', 'generate' => true, 'only' => ['module']],
+        'provider' => ['path' => 'src/Providers', 'namespace' => 'Providers', 'generate' => true, 'only' => ['module']],
+        'assets' => ['path' => 'resources/assets', 'generate' => true],
+        'lang' => ['path' => 'resources/lang', 'generate' => true],
+        'views' => ['path' => 'resources/views', 'generate' => true],
+        'public' => ['path' => 'public', 'generate' => true],
+        'test' => ['path' => 'Tests/Unit', 'namespace' => 'Tests\\Unit', 'generate' => true, 'only' => ['module']],
+        'test-feature' => ['path' => 'Tests/Feature', 'namespace' => 'Feature', 'generate' => true, 'only' => ['module']],
+        'repository' => ['path' => 'src/Repositories', 'namespace' => 'Repositories', 'generate' => false, 'only' => ['module']],
+        'event' => ['path' => 'src/Events', 'namespace' => 'Events', 'generate' => false, 'only' => ['module']],
+        'listener' => ['path' => 'src/Listeners', 'namespace' => 'Listeners', 'generate' => false, 'only' => ['module']],
+        'policies' => ['path' => 'src/Policies', 'namespace' => 'Policies', 'generate' => false, 'only' => ['module']],
+        'rules' => ['path' => 'src/Rules', 'namespace' => 'Rules', 'generate' => false, 'only' => ['module']],
+        'jobs' => ['path' => 'src/Jobs', 'namespace' => 'Jobs', 'generate' => false, 'only' => ['module']],
+        'emails' => ['path' => 'src/Emails', 'namespace' => 'Emails', 'generate' => false, 'only' => ['module']],
+        'notifications' => ['path' => 'src/Notifications', 'namespace' => 'Notifications', 'generate' => false, 'only' => ['module']],
+        'resource' => ['path' => 'src/Transformers', 'namespace' => 'Transformers', 'generate' => false, 'only' => ['module']],
+        'component-view' => ['path' => 'resources/views/components', 'generate' => false, 'only' => ['module']],
+        'component-class' => ['path' => 'src/View/Components', 'namespace' => 'View\\Components', 'generate' => false, 'only' => ['module']],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +309,7 @@ return [
     */
     'commands' => [
         Commands\ClearAllCache::class,
+
         Commands\Module\CommandMakeCommand::class,
         Commands\Module\ComponentClassMakeCommand::class,
         Commands\Module\ComponentViewMakeCommand::class,
@@ -200,7 +349,6 @@ return [
         Commands\Module\UpdateCommand::class,
         Commands\Module\UseCommand::class,
         Commands\Module\ResourceMakeCommand::class,
-        Commands\Module\TestMakeCommand::class,
 
         Commands\Theme\ThemeDeleteCommand::class,
         Commands\Theme\ThemeMakeCommand::class,

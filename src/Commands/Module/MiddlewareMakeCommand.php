@@ -2,15 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\WithModuleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MiddlewareMakeCommand extends GeneratorCommand
+class MiddlewareMakeCommand extends Command
 {
-    use WithModuleCommand;
+    use WithGeneratorStub;
 
     /**
      * The name of argument name.

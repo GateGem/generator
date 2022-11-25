@@ -4,9 +4,12 @@ namespace LaraIO\Generator\Commands\Module;
 
 use LaraIO\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
-class MailMakeCommand extends GeneratorCommand
+class MailMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     /**
      * The console command name.

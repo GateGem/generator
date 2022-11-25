@@ -2,15 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\WithModuleCommand;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class FactoryMakeCommand extends GeneratorCommand
+class FactoryMakeCommand extends Command
 {
-
+    use WithGeneratorStub;
     /**
      * The name of argument name.
      *
@@ -45,30 +43,19 @@ class FactoryMakeCommand extends GeneratorCommand
         ];
     }
 
-    /**
-     * @return mixed
-     */
-    protected function getTemplateContents()
+    public function handle(): int
     {
-
-        return (new Stub('/factory.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'NAME' => $this->getModelName(),
-            'MODEL_NAMESPACE' => $this->getModelNamespace(),
-        ]))->render();
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('factory');
+        return 0;
     }
-
     /**
-     * Get model namespace.
+     * Get replacement for $MODEL_NAMESPACE$.
      *
      * @return string
      */
-    public function getModelNamespace(): string
+    protected function getModelNamespaceReplacement()
     {
-        return "";
-    }
-    protected function getConfigName()
-    {
-        return 'factory';
+        return $this->getNamespaceByPath('model');
     }
 }

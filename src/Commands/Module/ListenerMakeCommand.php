@@ -6,9 +6,12 @@ use LaraIO\Generator\Support\Config\GenerateConfigReader;
 use LaraIO\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
-class ListenerMakeCommand extends GeneratorCommand
+class ListenerMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     protected $argumentName = 'name';
 

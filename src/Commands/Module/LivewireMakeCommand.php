@@ -2,12 +2,15 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use LaraIO\Generator\Traits\ComponentParser;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 
 class LivewireMakeCommand extends Command
 {
+    use WithGeneratorStub;
+
     use ComponentParser;
 
     protected $signature = 'module:make-livewire {component} {module} {--view=} {--force} {--inline} {--stub=} {--custom}';
