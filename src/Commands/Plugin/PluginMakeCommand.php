@@ -3,12 +3,17 @@
 namespace LaraIO\Generator\Commands\Plugin;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Support\BaseGenerator;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class PluginMakeCommand extends Command
 {
+    use WithGeneratorStub;
+    public function getBaseTypeName()
+    {
+        return 'plugin';
+    }
     /**
      * The console command name.
      *
@@ -30,20 +35,19 @@ class PluginMakeCommand extends Command
     {
         $names = $this->argument('name');
         $success = true;
+        $this->bootWithGeneratorStub($this->laravel['files']);
+
+        $names = $this->argument('name');
+        $success = true;
 
         foreach ($names as $name) {
-            $code = with(new BaseGenerator($name, "plugin"))
-                ->setFilesystem($this->laravel['files'])
-                ->setConfig($this->laravel['config'])
-                ->setConsole($this)
-                ->setType($this->getPluginType())
-                ->setActive(!$this->option('disabled'))
-                ->generate();
+            $code = $this->generate($name);
 
             if ($code === E_ERROR) {
                 $success = false;
             }
         }
+        $this->info('done');
 
         return $success ? 0 : E_ERROR;
     }

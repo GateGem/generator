@@ -3,12 +3,18 @@
 namespace LaraIO\Generator\Commands\Theme;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Support\BaseGenerator;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class ThemeMakeCommand extends Command
 {
+
+    use WithGeneratorStub;
+    public function getBaseTypeName()
+    {
+        return 'theme';
+    }
     /**
      * The console command name.
      *
@@ -28,17 +34,16 @@ class ThemeMakeCommand extends Command
      */
     public function handle(): int
     {
+
+        $names = $this->argument('name');
+        $success = true;
+        $this->bootWithGeneratorStub($this->laravel['files']);
+
         $names = $this->argument('name');
         $success = true;
 
         foreach ($names as $name) {
-            $code = with(new BaseGenerator($name, "theme"))
-                ->setFilesystem($this->laravel['files'])
-                ->setConfig($this->laravel['config'])
-                ->setConsole($this)
-                ->setType($this->getThemeType())
-                ->setActive(!$this->option('disabled'))
-                ->generate();
+            $code = $this->generate($name);
 
             if ($code === E_ERROR) {
                 $success = false;

@@ -196,7 +196,7 @@ trait WithGenerator
      */
     public function getFolders()
     {
-        return config('generator.paths.generator');
+        return config('generator.paths.generator', []);
     }
 
     /**
