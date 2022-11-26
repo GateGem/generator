@@ -2,14 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class TestMakeCommand extends GeneratorCommand
+class TestMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     protected $argumentName = 'name';
     protected $name = 'module:make-test';
@@ -39,28 +39,20 @@ class TestMakeCommand extends GeneratorCommand
             ['feature', false, InputOption::VALUE_NONE, 'Create a feature test.'],
         ];
     }
-
-    /**
-     * @return mixed
+ /**
+     * Execute the console command.
+     *
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-        $stub = '/unit-test.stub';
+        $stub = 'unit-test';
 
         if ($this->option('feature')) {
-            $stub = '/feature-test.stub';
+            $stub = 'feature-test';
         }
-
-        return (new Stub($stub, [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-
-    protected function getConfigName()
-    {
-        if ($this->option('feature'))
-            return 'test-feature';
-        return 'test';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub($stub);
+        return 0;
     }
 }

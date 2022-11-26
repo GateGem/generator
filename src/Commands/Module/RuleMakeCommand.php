@@ -2,11 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class RuleMakeCommand extends GeneratorCommand
+class RuleMakeCommand extends Command
 {
+    use WithGeneratorStub;
     /**
      * The name of argument name.
      *
@@ -40,21 +42,15 @@ class RuleMakeCommand extends GeneratorCommand
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
-    /**
-     * @return mixed
+/**
+     * Execute the console command.
+     *
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-
-        return (new Stub('/rule.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getFileName(),
-        ]))->render();
-    }
-
-    protected function getConfigName()
-    {
-        return 'rules';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('rule');
+        return 0;
     }
 }

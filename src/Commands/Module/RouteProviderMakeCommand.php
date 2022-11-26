@@ -2,12 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class RouteProviderMakeCommand extends GeneratorCommand
+class RouteProviderMakeCommand extends Command
 {
+    use WithGeneratorStub;
     protected $argumentName = 'module';
 
     /**
@@ -42,63 +44,15 @@ class RouteProviderMakeCommand extends GeneratorCommand
             ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the file already exists.'],
         ];
     }
-
-    /**
-     * Get template contents.
+/**
+     * Execute the console command.
      *
-     * @return string
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-        $module = $this->getModule();
-
-        return (new Stub('/route-provider.stub', [
-            'NAMESPACE'            => $this->getClassNamespace($module),
-            'CLASS'                => $this->getFileName(),
-            'LARAAPP_NAMESPACE'     => $module->getValue('namespace'),
-            'MODULE'               => $this->getModuleName(),
-            'CONTROLLER_NAMESPACE' => $this->getControllerNameSpace(),
-            'WEB_ROUTES_PATH'      => $this->getWebRoutesPath(),
-            'API_ROUTES_PATH'      => $this->getApiRoutesPath(),
-            'LOWER_NAME'           => $module->getLowerName(),
-        ]))->render();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getFileName()
-    {
-        return 'RouteServiceProvider';
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getWebRoutesPath()
-    {
-        return  '/routes/web.php';
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getApiRoutesPath()
-    {
-        return  '/routes/api.php';
-    }
-
-    /**
-     * @return string
-     */
-    private function getControllerNameSpace(): string
-    {
-        $namespace = $this->getModule()->getValue('namespace');
-
-        return str_replace('/', '\\', $namespace . 'Http/Controller');
-    }
-    protected function getConfigName()
-    {
-        return 'provider';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('route-provider');
+        return 0;
     }
 }

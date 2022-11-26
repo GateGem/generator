@@ -2,15 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\CanClearModulesCache;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class SeedMakeCommand extends GeneratorCommand
+class SeedMakeCommand extends Command
 {
-    use CanClearModulesCache;
+    use WithGeneratorStub;
 
     protected $argumentName = 'name';
 
@@ -57,44 +56,15 @@ class SeedMakeCommand extends GeneratorCommand
             ],
         ];
     }
-
     /**
-     * @return mixed
-     */
-    protected function getTemplateContents()
-    {
-
-        return (new Stub('/seeder.stub', [
-            'NAME' => $this->getSeederName(),
-            'MODULE' => $this->getModuleName(),
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-
-        ]))->render();
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getDestinationFilePath()
-    {
-        $this->clearCache();
-
-        return parent::getDestinationFilePath();
-    }
-
-    /**
-     * Get seeder name.
+     * Execute the console command.
      *
-     * @return string
+     * @return int
      */
-    private function getSeederName()
+    public function handle()
     {
-        $end = $this->option('master') ? 'DatabaseSeeder' : 'TableSeeder';
-
-        return Str::studly($this->argument('name')) . $end;
-    }
-    protected function getConfigName()
-    {
-        return 'seeder';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('seeder');
+        return 0;
     }
 }

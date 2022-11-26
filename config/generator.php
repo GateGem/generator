@@ -262,6 +262,67 @@ return [
                     'LOWER_NAME'
                 ]
             ],
+
+            'listener' => [
+                'path' => 'listener',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+
+            'listener-queued' => [
+                'path' => 'listener',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+
+            'listener-queued-duck' => [
+                'path' => 'listener',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+
+            'listener-duck' => [
+                'path' => 'listener',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME'
+                ]
+            ],
+            'livewire' => [
+                'path' => 'livewire',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                    'VIEW_NAME'
+                ]
+            ],
+            
+            'livewire-inline' => [
+                'path' => 'livewire',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                    'QUOTE'
+                ]
+            ],
         ],
         'gitkeep' => true,
     ],
@@ -276,6 +337,7 @@ return [
         'model' => ['path' => 'src/Models', 'namespace' => 'Models', 'generate' => true, 'only' => ['module']],
         'routes' => ['path' => 'routes', 'generate' => true, 'only' => ['module']],
         'controller' => ['path' => 'src/Http/Controllers', 'namespace' => 'Http\\Controllers', 'generate' => true, 'only' => ['module']],
+        'livewire' => ['path' => 'src/Http/Livewire', 'namespace' => 'Http\\Livewire', 'generate' => true, 'only' => ['module']],
         'filter' => ['path' => 'src/Http/Middleware', 'namespace' => 'Http\\Middleware', 'generate' => true, 'only' => ['module']],
         'request' => ['path' => 'src/Http/Requests', 'namespace' => 'Http\\Requests', 'generate' => true, 'only' => ['module']],
         'provider' => ['path' => 'src/Providers', 'namespace' => 'Providers', 'generate' => true, 'only' => ['module']],
@@ -338,12 +400,8 @@ return [
         Commands\Module\MigrateRollbackCommand::class,
         Commands\Module\MigrateStatusCommand::class,
         Commands\Module\MigrationMakeCommand::class,
-        Commands\Module\ModelMakeCommand::class,
-        Commands\Module\PublishCommand::class,
-        Commands\Module\PublishConfigurationCommand::class,
-        Commands\Module\PublishMigrationCommand::class,
-        Commands\Module\PublishTranslationCommand::class,
-        Commands\Module\SeedCommand::class,
+        // Commands\Module\ModelMakeCommand::class,
+        // Commands\Module\SeedCommand::class,
         Commands\Module\SeedMakeCommand::class,
         Commands\Module\UnUseCommand::class,
         Commands\Module\UpdateCommand::class,

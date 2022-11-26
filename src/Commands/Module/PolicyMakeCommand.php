@@ -2,15 +2,14 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
-use LaraIO\Generator\Traits\WithModuleCommand;
+
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class PolicyMakeCommand extends GeneratorCommand
+class PolicyMakeCommand extends Command
 {
-    use WithModuleCommand;
+    use WithGeneratorStub;
 
     /**
      * The name of argument name.
@@ -45,20 +44,15 @@ class PolicyMakeCommand extends GeneratorCommand
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
-    /**
-     * @return mixed
+     /**
+     * Execute the console command.
+     *
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-        return (new Stub('/policy.plain.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-
-    protected function getConfigName()
-    {
-        return 'policies';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('policies');
+        return 0;
     }
 }

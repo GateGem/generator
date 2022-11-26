@@ -2,12 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-final class NotificationMakeCommand extends GeneratorCommand
+final class NotificationMakeCommand  extends Command
 {
-
+    use WithGeneratorStub;
     /**
      * The console command name.
      *
@@ -25,20 +26,6 @@ final class NotificationMakeCommand extends GeneratorCommand
     protected $description = 'Create a new notification class for the specified module.';
 
     /**
-     * Get template contents.
-     *
-     * @return string
-     */
-    protected function getTemplateContents()
-    {
-        return (new Stub('/notification.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-
-
-    /**
      * Get the console command arguments.
      *
      * @return array
@@ -50,8 +37,15 @@ final class NotificationMakeCommand extends GeneratorCommand
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-    protected function getConfigName()
+     /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
     {
-        return 'notifications';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('notifications');
+        return 0;
     }
 }

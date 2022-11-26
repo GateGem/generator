@@ -1,13 +1,13 @@
 <?php
 
-namespace [namespace];
+namespace $NAMESPACE$;
 
 use LaraIO\Core\Livewire\Component;
 
-class [class] extends Component
+class $CLASS$ extends Component
 {
     public function render()
     {
-        return view('[view]');
+        return view('$LOWER_NAME$::$VIEW_NAME$');
     }
 }

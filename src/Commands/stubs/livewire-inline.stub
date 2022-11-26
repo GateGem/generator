@@ -1,16 +1,16 @@
 <?php
 
-namespace [namespace];
+namespace $NAMESPACE$;
 
 use LaraIO\Core\Livewire\Component;
 
-class [class] extends Component
+class $CLASS$ extends Component
 {
     public function render()
     {
         return <<<'blade'
             <div>
-                <h3>[quote]</h3>
+                <h3>$QUOTE$</h3>
             </div>
         blade;
     }

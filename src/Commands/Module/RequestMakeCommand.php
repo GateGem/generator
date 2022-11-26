@@ -2,11 +2,13 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Stub;
+use Illuminate\Console\Command;
+use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-class RequestMakeCommand extends GeneratorCommand
+class RequestMakeCommand extends Command
 {
+    use WithGeneratorStub;
 
     /**
      * The name of argument name.
@@ -41,19 +43,15 @@ class RequestMakeCommand extends GeneratorCommand
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
     /**
-     * @return mixed
+     * Execute the console command.
+     *
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-        return (new Stub('/request.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-    protected function getConfigName()
-    {
-        return 'request';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('request');
+        return 0;
     }
 }

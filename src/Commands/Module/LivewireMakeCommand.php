@@ -2,19 +2,43 @@
 
 namespace LaraIO\Generator\Commands\Module;
 
-use Illuminate\Support\Facades\File;
-use LaraIO\Generator\Traits\ComponentParser;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use LaraIO\Generator\Traits\WithGeneratorStub;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class LivewireMakeCommand extends Command
 {
     use WithGeneratorStub;
 
-    use ComponentParser;
+    // {component} {module} {--view=} {--force} {--inline} {--stub=} {--custom}
+    protected $name = 'module:make-livewire';
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the command.'],
+            ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
+        ];
+    }
 
-    protected $signature = 'module:make-livewire {component} {module} {--view=} {--force} {--inline} {--stub=} {--custom}';
-
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['view', null, InputOption::VALUE_OPTIONAL, 'The event class being listened for.'],
+            ['inline', null, InputOption::VALUE_OPTIONAL, 'Indicates the event listener should be queued.',true],
+        ];
+    }
     /**
      * The console command description.
      *
@@ -29,71 +53,26 @@ class LivewireMakeCommand extends Command
      */
     public function handle()
     {
-        if (! $this->parser()) {
-            return false;
-        }
-
-        if (! $this->checkClassNameValid()) {
-            return false;
-        }
-
-        if (! $this->checkReservedClassName()) {
-            return false;
-        }
-
-        $class = $this->createClass();
-
-        $view = $this->createView();
-
-        if ($class || $view) {
-            $this->line("<options=bold,reverse;fg=green> COMPONENT CREATED </> 🤙\n");
-
-            $class && $this->line("<options=bold;fg=green>CLASS:</> {$this->getClassSourcePath()}");
-
-            $view && $this->line("<options=bold;fg=green>VIEW:</>  {$this->getViewSourcePath()}");
-
-            $class && $this->line("<options=bold;fg=green>TAG:</> {$class->tag}");
-        }
-
-        return false;
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub($this->getStubName());
+        return 0;
     }
-
-    protected function createClass()
+    /**
+     * @return string
+     */
+    protected function getStubName(): string
     {
-        $classFile = $this->component->class->file;
+        if ($this->option('inline')) {
 
-        if (File::exists($classFile) && ! $this->isForce()) {
-            $this->line("<options=bold,reverse;fg=red> WHOOPS-IE-TOOTLES </> 😳 \n");
-            $this->line("<fg=red;options=bold>Class already exists:</> {$this->getClassSourcePath()}");
-
-            return false;
+            return 'livewire-inline';
         }
-
-        $this->ensureDirectoryExists($classFile);
-
-        File::put($classFile, $this->getClassContents());
-
-        return $this->component->class;
+        return 'livewire';
     }
-
-    protected function createView()
+    protected function getViewNameReplacement()
     {
-        if ($this->isInline()) {
-            return false;
+        if ($this->option('view')) {
+            return Str::lower($this->option('view'));
         }
-
-        $viewFile = $this->component->view->file;
-
-        if (File::exists($viewFile) && ! $this->isForce()) {
-            $this->line("<fg=red;options=bold>View already exists:</> {$this->getViewSourcePath()}");
-
-            return false;
-        }
-
-        $this->ensureDirectoryExists($viewFile);
-
-        File::put($viewFile, $this->getViewContents());
-
-        return $this->component->view;
+        return 'index';
     }
 }

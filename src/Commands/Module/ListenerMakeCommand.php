@@ -54,30 +54,12 @@ class ListenerMakeCommand extends Command
             ['queued', null, InputOption::VALUE_NONE, 'Indicates the event listener should be queued.'],
         ];
     }
-
-    protected function getTemplateContents()
+    public function handle(): int
     {
-        $module = $this->getModule();
-
-        return (new Stub($this->getStubName(), [
-            'NAMESPACE' => $this->getClassNamespace($module),
-            'EVENTNAME' => $this->getEventName($module),
-            'SHORTEVENTNAME' => $this->getShortEventName(),
-            'CLASS' => $this->getClass(),
-        ]))->render();
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub($this->getStubName());
+        return 0;
     }
-    protected function getEventName($module)
-    {
-        $eventPath = GenerateConfigReader::read('event');
-        $eventName =  $this->getModule()->getValue('namespace') . '/' . $eventPath->getPath(). "\\" . $this->option('event');
-        return str_replace('/', '\\', $eventName);
-    }
-
-    protected function getShortEventName()
-    {
-        return class_basename($this->option('event'));
-    }
-
 
     /**
      * @return string
@@ -86,20 +68,16 @@ class ListenerMakeCommand extends Command
     {
         if ($this->option('queued')) {
             if ($this->option('event')) {
-                return '/listener-queued.stub';
+                return 'listener-queued';
             }
 
-            return '/listener-queued-duck.stub';
+            return 'listener-queued-duck';
         }
 
         if ($this->option('event')) {
-            return '/listener.stub';
+            return 'listener';
         }
 
-        return '/listener-duck.stub';
-    }
-    protected function getConfigName()
-    {
-        return 'listener';
+        return 'listener-duck';
     }
 }
