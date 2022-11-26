@@ -38,22 +38,15 @@ class MailMakeCommand extends Command
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
     /**
-     * Get template contents.
+     * Execute the console command.
      *
-     * @return string
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-        return (new Stub('/mail.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-
-    protected function getConfigName()
-    {
-        return 'emails';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('mail');
+        return 0;
     }
 }

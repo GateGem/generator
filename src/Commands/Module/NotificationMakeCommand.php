@@ -45,7 +45,7 @@ final class NotificationMakeCommand  extends Command
     public function handle()
     {
         $this->bootWithGeneratorStub($this->laravel['files']);
-        $this->GeneratorFileByStub('notifications');
+        $this->GeneratorFileByStub('notification');
         return 0;
     }
 }

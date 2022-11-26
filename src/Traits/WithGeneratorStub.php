@@ -201,6 +201,10 @@ trait WithGeneratorStub
             }
 
             if (isset($replacements['NAMESPACE']) &&  (isset($replacements['CLASS']))) {
+                if (isset($template['file_prex']) && $template['file_prex'] != '' && Str::contains(strtolower($replacements['CLASS']), strtolower($template['file_prex'])) === false) {
+                    $replacements['CLASS'] .= $template['file_prex'];
+                }
+
                 $rs = $this->ProcessConvertClass($replacements['CLASS']);
                 $replacements['CLASS'] = $rs['CLASS'];
                 $replacements['CLASS_FILE'] = $replacements['CLASS'];

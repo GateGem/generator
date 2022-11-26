@@ -5,7 +5,7 @@ namespace $NAMESPACE$;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class $NAME$ extends Seeder
+class $CLASS$ extends Seeder
 {
     /**
      * Run the database seeds.

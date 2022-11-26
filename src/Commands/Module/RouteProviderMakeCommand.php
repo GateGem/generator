@@ -44,7 +44,11 @@ class RouteProviderMakeCommand extends Command
             ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the file already exists.'],
         ];
     }
-/**
+    public function getFileName()
+    {
+        return 'Route';
+    }
+    /**
      * Execute the console command.
      *
      * @return int

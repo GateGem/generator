@@ -44,21 +44,15 @@ class MiddlewareMakeCommand extends Command
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-
     /**
-     * @return mixed
+     * Execute the console command.
+     *
+     * @return int
      */
-    protected function getTemplateContents()
+    public function handle()
     {
-
-        return (new Stub('/middleware.stub', [
-            'NAMESPACE' => $this->getClassNamespace($this->getModule()),
-            'CLASS'     => $this->getClass(),
-        ]))->render();
-    }
-
-    protected function getConfigName()
-    {
-        return 'filter';
+        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->GeneratorFileByStub('middleware');
+        return 0;
     }
 }

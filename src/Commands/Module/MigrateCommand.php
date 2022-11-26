@@ -4,7 +4,6 @@ namespace LaraIO\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
 use LaraIO\Core\Facades\Module;
-use LaraIO\Generator\Support\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

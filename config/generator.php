@@ -207,6 +207,7 @@ return [
 
             'controller' => [
                 'path' => 'controller',
+                'file_prex' => 'Controller',
                 'name' => '$CLASS_FILE$.php',
                 'replacements' => [
                     'CLASS',
@@ -312,7 +313,7 @@ return [
                     'VIEW_NAME'
                 ]
             ],
-            
+
             'livewire-inline' => [
                 'path' => 'livewire',
                 'name' => '$CLASS_FILE$.php',
@@ -321,6 +322,118 @@ return [
                     'NAMESPACE',
                     'LOWER_NAME',
                     'QUOTE'
+                ]
+            ],
+            'mail' => [
+                'path' => 'emails',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'middleware' => [
+                'path' => 'middleware',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+
+            'notification' => [
+                'path' => 'notifications',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'policy-plain' => [
+                'path' => 'policies',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'provider' => [
+                'path' => 'provider',
+                'file_prex' => 'ServiceProvider',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'scaffold/provider' => [
+                'path' => 'provider',
+                'file_prex' => 'ServiceProvider',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'route-provider' => [
+                'path' => 'provider',
+                'file_prex' => 'ServiceProvider',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'request' => [
+                'path' => 'request',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'resource' => [
+                'path' => 'resource',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'resource-collection' => [
+                'path' => 'resource',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'rule' => [
+                'path' => 'rules',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
+            'seeder' => [
+                'path' => 'seeder',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
                 ]
             ],
         ],
@@ -338,7 +451,7 @@ return [
         'routes' => ['path' => 'routes', 'generate' => true, 'only' => ['module']],
         'controller' => ['path' => 'src/Http/Controllers', 'namespace' => 'Http\\Controllers', 'generate' => true, 'only' => ['module']],
         'livewire' => ['path' => 'src/Http/Livewire', 'namespace' => 'Http\\Livewire', 'generate' => true, 'only' => ['module']],
-        'filter' => ['path' => 'src/Http/Middleware', 'namespace' => 'Http\\Middleware', 'generate' => true, 'only' => ['module']],
+        'middleware' => ['path' => 'src/Http/Middleware', 'namespace' => 'Http\\Middleware', 'generate' => true, 'only' => ['module']],
         'request' => ['path' => 'src/Http/Requests', 'namespace' => 'Http\\Requests', 'generate' => true, 'only' => ['module']],
         'provider' => ['path' => 'src/Providers', 'namespace' => 'Providers', 'generate' => true, 'only' => ['module']],
         'assets' => ['path' => 'resources/assets', 'generate' => true],

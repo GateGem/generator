@@ -62,16 +62,6 @@ class ControllerMakeCommand extends Command
         $this->GeneratorFileByStub($this->getStubName());
         return 0;
     }
-    protected function getClassReplacement()
-    {
-        $controller = Str::studly($this->argument('name'));
-
-        if (Str::contains(strtolower($controller), 'controller') === false) {
-            $controller .= 'Controller';
-        }
-
-        return $controller;
-    }
     /**
      * Get the stub file name based on the options
      * @return string
