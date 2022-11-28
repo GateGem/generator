@@ -489,9 +489,6 @@ return [
         Commands\Module\ComponentClassMakeCommand::class,
         Commands\Module\ComponentViewMakeCommand::class,
         Commands\Module\ControllerMakeCommand::class,
-        Commands\Module\DisableCommand::class,
-        Commands\Module\DumpCommand::class,
-        Commands\Module\EnableCommand::class,
         Commands\Module\EventMakeCommand::class,
         Commands\Module\JobMakeCommand::class,
         Commands\Module\ListenerMakeCommand::class,
@@ -558,42 +555,4 @@ return [
         'key' => 'generator',
         'lifetime' => 60,
     ],
-    /*
-    |--------------------------------------------------------------------------
-    | Choose what generator will register as custom namespaces.
-    | Setting one to false will require you to register that part
-    | in your own Service Provider class.
-    |--------------------------------------------------------------------------
-    */
-    'register' => [
-        'translations' => true,
-        /**
-         * load files on boot or register method
-         *
-         * Note: boot not compatible with asgardcms
-         *
-         * @example boot|register
-         */
-        'files' => 'register',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Activators
-    |--------------------------------------------------------------------------
-    |
-    | You can define new types of activators here, file, database etc. The only
-    | required parameter is 'class'.
-    | The file activator will store the activation status in storage/installed_modules
-    */
-    'activators' => [
-        'file' => [
-            'class' => FileActivator::class,
-            'statuses-file' => base_path('modules_statuses.json'),
-            'cache-key' => 'activator.installed',
-            'cache-lifetime' => 604800,
-        ],
-    ],
-
-    'activator' => 'file',
 ];
