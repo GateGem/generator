@@ -52,7 +52,7 @@ class ResourceMakeCommand  extends Command
      */
     public function handle()
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub($this->getStubName());
         return 0;
     }

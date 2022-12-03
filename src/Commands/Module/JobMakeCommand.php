@@ -55,7 +55,7 @@ class JobMakeCommand extends Command
 
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub($this->getStubName());
         return 0;
     }

@@ -55,7 +55,7 @@ class ComponentClassMakeCommand extends Command
     }
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('component-class');
 
         $this->writeComponentViewTemplate();

@@ -45,7 +45,7 @@ class MailMakeCommand extends Command
      */
     public function handle()
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('mail');
         return 0;
     }

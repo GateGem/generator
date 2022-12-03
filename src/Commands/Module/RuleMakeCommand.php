@@ -49,7 +49,7 @@ class RuleMakeCommand extends Command
      */
     public function handle()
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('rule');
         return 0;
     }

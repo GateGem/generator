@@ -55,7 +55,7 @@ class RouteProviderMakeCommand extends Command
      */
     public function handle()
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('route-provider');
         return 0;
     }

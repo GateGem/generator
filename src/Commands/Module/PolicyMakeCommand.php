@@ -51,7 +51,7 @@ class PolicyMakeCommand extends Command
      */
     public function handle()
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('policy-plain');
         return 0;
     }

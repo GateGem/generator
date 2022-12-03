@@ -35,7 +35,7 @@ class ModelMakeCommand extends Command
 
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('model');
 
         $this->handleOptionalMigrationOption();

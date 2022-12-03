@@ -40,7 +40,7 @@ class EventMakeCommand extends Command
 
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('event');
         return 0;
     }

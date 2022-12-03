@@ -65,7 +65,7 @@ class CommandMakeCommand extends Command
      */
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
 
         $this->GeneratorFileByStub('command');
         $this->info('done');

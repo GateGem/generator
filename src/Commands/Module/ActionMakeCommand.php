@@ -6,24 +6,11 @@ use Illuminate\Console\Command;
 use LaraIO\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
-final class NotificationMakeCommand  extends Command
+class ActionMakeCommand extends Command
 {
     use WithGeneratorStub;
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'module:make-notification';
 
     protected $argumentName = 'name';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new notification class for the specified module.';
 
     /**
      * Get the console command arguments.
@@ -33,19 +20,29 @@ final class NotificationMakeCommand  extends Command
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the notification class.'],
+            ['name', InputArgument::REQUIRED, 'The name of the event.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
-     /**
-     * Execute the console command.
+    /**
+     * The console command name.
      *
-     * @return int
+     * @var string
      */
-    public function handle()
+    protected $name = 'module:make-action';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Create a new event class for the specified module';
+
+    public function handle(): int
     {
         $this->bootWithGeneratorStub();
-        $this->GeneratorFileByStub('notification');
+        $this->GeneratorFileByStub('action');
         return 0;
     }
+
 }

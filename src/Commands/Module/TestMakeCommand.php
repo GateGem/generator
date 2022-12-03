@@ -51,7 +51,7 @@ class TestMakeCommand extends Command
         if ($this->option('feature')) {
             $stub = 'feature-test';
         }
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub($stub);
         return 0;
     }

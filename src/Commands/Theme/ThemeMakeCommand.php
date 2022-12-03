@@ -37,7 +37,7 @@ class ThemeMakeCommand extends Command
 
         $names = $this->argument('name');
         $success = true;
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
 
         $names = $this->argument('name');
         $success = true;

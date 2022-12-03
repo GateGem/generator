@@ -236,7 +236,7 @@ return [
                 ]
             ],
             'job' => [
-                'path' => 'job',
+                'path' => 'jobs',
                 'name' => '$CLASS_FILE$.php',
                 'replacements' => [
                     'CLASS',
@@ -436,6 +436,15 @@ return [
                     'LOWER_NAME',
                 ]
             ],
+            'action' => [
+                'path' => 'action',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
         ],
         'gitkeep' => true,
     ],
@@ -452,6 +461,7 @@ return [
         'controller' => ['path' => 'src/Http/Controllers', 'namespace' => 'Http\\Controllers', 'generate' => true, 'only' => ['module']],
         'livewire' => ['path' => 'src/Http/Livewire', 'namespace' => 'Http\\Livewire', 'generate' => true, 'only' => ['module']],
         'middleware' => ['path' => 'src/Http/Middleware', 'namespace' => 'Http\\Middleware', 'generate' => true, 'only' => ['module']],
+        'action' => ['path' => 'src/Http/Action', 'namespace' => 'Http\\Action', 'generate' => true, 'only' => ['module']],
         'request' => ['path' => 'src/Http/Requests', 'namespace' => 'Http\\Requests', 'generate' => true, 'only' => ['module']],
         'provider' => ['path' => 'src/Providers', 'namespace' => 'Providers', 'generate' => true, 'only' => ['module']],
         'assets' => ['path' => 'resources/assets', 'generate' => true],
@@ -517,6 +527,7 @@ return [
         Commands\Module\UpdateCommand::class,
         Commands\Module\UseCommand::class,
         Commands\Module\ResourceMakeCommand::class,
+        Commands\Module\ActionMakeCommand::class,
 
         Commands\Theme\ThemeDeleteCommand::class,
         Commands\Theme\ThemeMakeCommand::class,

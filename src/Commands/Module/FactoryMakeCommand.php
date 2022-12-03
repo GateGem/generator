@@ -45,7 +45,7 @@ class FactoryMakeCommand extends Command
 
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub('factory');
         return 0;
     }

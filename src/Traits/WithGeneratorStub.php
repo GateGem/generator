@@ -4,6 +4,7 @@ namespace LaraIO\Generator\Traits;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use LaraIO\Core\Facades\Core;
 
@@ -60,7 +61,7 @@ trait WithGeneratorStub
     public function bootWithGeneratorStub(
         Filesystem $filesystem = null
     ) {
-        $this->filesystem = $filesystem ?? app('filesystem');
+        $this->filesystem = $filesystem ?? $this->laravel['files'];
         $this->GeneratorConfig = config('generator');
         $this->info('bootWithGeneratorStub');
     }
@@ -219,6 +220,7 @@ trait WithGeneratorStub
             $this->info($path);
             $content = $this->getContentWithStub($stub . '.stub');
             $content = $this->getContentWithReplace($content, $replacements, isset($template['doblue']) && $template['doblue']);
+            Log::info($path);
             if (!$this->filesystem->isDirectory($dir = dirname($path))) {
                 $this->filesystem->makeDirectory($dir, 0775, true);
             }

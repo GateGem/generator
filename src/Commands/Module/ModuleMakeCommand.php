@@ -77,7 +77,7 @@ class ModuleMakeCommand extends Command
      */
     public function handle(): int
     {
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
       
         $names = $this->argument('name');
         $success = true;

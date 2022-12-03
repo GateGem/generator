@@ -64,7 +64,7 @@ class ProviderMakeCommand extends  Command
     public function handle()
     {
         $stub = $this->option('master') ? 'scaffold/provider' : 'provider';
-        $this->bootWithGeneratorStub($this->laravel['files']);
+        $this->bootWithGeneratorStub();
         $this->GeneratorFileByStub($stub);
         return 0;
     }
