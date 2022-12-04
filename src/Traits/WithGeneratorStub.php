@@ -365,7 +365,7 @@ trait WithGeneratorStub
      */
     protected function getQuoteReplacement()
     {
-        return Inspiring::quote();
+        return Inspiring::quotes()->random();
     }
 
     //------------------END  : Replacement------------------------------

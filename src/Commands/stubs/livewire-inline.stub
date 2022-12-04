@@ -10,7 +10,9 @@ class $CLASS$ extends Component
     {
         return <<<'blade'
             <div>
-                <h3>$QUOTE$</h3>
+                <h3>
+                $QUOTE$
+                </h3>
             </div>
         blade;
     }
