@@ -56,7 +56,7 @@ class ModelMakeCommand extends Command
 
         $string = '';
         foreach ($pieces as $i => $piece) {
-            if ($i+1 < count($pieces)) {
+            if ($i + 1 < count($pieces)) {
                 $string .= strtolower($piece) . '_';
             } else {
                 $string .= Str::plural(strtolower($piece));
@@ -74,7 +74,7 @@ class ModelMakeCommand extends Command
     protected function getArguments()
     {
         return [
-            ['model', InputArgument::REQUIRED, 'The name of model will be created.'],
+            ['name', InputArgument::REQUIRED, 'The name of model will be created.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
@@ -113,44 +113,17 @@ class ModelMakeCommand extends Command
             $controllerName = "{$this->getModelName()}Controller";
 
             $this->call('module:make-controller', array_filter([
-                'controller' => $controllerName,
+                'name' => $controllerName,
                 'module' => $this->argument('module'),
             ]));
         }
     }
 
     /**
-     * @return mixed
-     */
-    protected function getTemplateContents()
-    {
-        $module = $this->laravel['modules']->findOrFail($this->getModuleName());
-
-        return (new Stub('/model.stub', [
-            'NAME'              => $this->getModelName(),
-            'FILLABLE'          => $this->getFillable(),
-            'NAMESPACE'         => $this->getClassNamespace($module),
-            'CLASS'             => $this->getClass(),
-            'LOWER_NAME'        => $module->getLowerName(),
-            'MODULE'            => $this->getModuleName(),
-            'STUDLY_NAME'       => $module->getStudlyName(),
-            'LARAAPP_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
-        ]))->render();
-    }
-
-
-    /**
-     * @return mixed|string
-     */
-    private function getModelName()
-    {
-        return Str::studly($this->argument('name'));
-    }
-
-    /**
+     * $FILLABLE$
      * @return string
      */
-    private function getFillable()
+    public function getFillableReplacement()
     {
         $fillable = $this->option('fillable');
 
@@ -162,8 +135,12 @@ class ModelMakeCommand extends Command
 
         return '[]';
     }
-    protected function getConfigName()
+    /**
+     * $NAMESPACE_FACTORY$
+     * @return string
+     */
+    public function getNamespaceFactoryReplacement()
     {
-        return 'model';
+        return $this->getNamespaceByPath('factory');
     }
 }

@@ -11,8 +11,8 @@ class $CLASS$ extends Model
 
     protected $fillable = $FILLABLE$;
     
-    protected static function newFactory()
-    {
-        return \$LARAAPP_NAMESPACE$\$BASE_TYPE$\$MODULE$\Database\factories\$NAME$Factory::new();
-    }
+    //protected static function newFactory()
+    //{
+    //    return \$NAMESPACE_FACTORY$\$CLASS$Factory::new();
+    //}
 }

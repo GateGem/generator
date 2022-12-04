@@ -260,7 +260,9 @@ return [
                 'replacements' => [
                     'CLASS',
                     'NAMESPACE',
-                    'LOWER_NAME'
+                    'LOWER_NAME',
+                    'NAMESPACE_FACTORY',
+                    'FILLABLE'
                 ]
             ],
 
@@ -520,7 +522,7 @@ return [
         Commands\Module\MigrateRollbackCommand::class,
         Commands\Module\MigrateStatusCommand::class,
         Commands\Module\MigrationMakeCommand::class,
-        // Commands\Module\ModelMakeCommand::class,
+        Commands\Module\ModelMakeCommand::class,
         // Commands\Module\SeedCommand::class,
         Commands\Module\SeedMakeCommand::class,
         Commands\Module\UnUseCommand::class,
