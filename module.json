@@ -1,10 +1,10 @@
 {
-  "name": "Dfdfdf",
-  "alias": "dfdfdf",
+  "name": "GateGenerator",
+  "alias": "GateGemGenerator",
   "description": "",
   "keywords": [],
   "priority": 0,
-  "namespace":"GateGem\\Generator",
+  "namespace": "GateGem\\Generator",
   "providers": ["GateGem\\Generator\\GeneratorServiceProvider"],
   "aliases": [],
   "files": [],
