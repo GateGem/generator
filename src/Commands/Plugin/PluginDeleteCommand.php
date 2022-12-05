@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Plugin;
+namespace GateGem\Generator\Commands\Plugin;
 
 use Illuminate\Console\Command;
-use LaraIO\Core\Facades\Plugin;
+use GateGem\Core\Facades\Plugin;
 use Symfony\Component\Console\Input\InputArgument;
 
 class PluginDeleteCommand extends Command

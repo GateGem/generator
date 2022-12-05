@@ -1,4 +1,4 @@
-@extends(\LaraIO\Core\Facades\Theme::layout())
+@extends(\GateGem\Core\Facades\Theme::layout())
 
 @section('content')
     <h1>Hello World</h1>

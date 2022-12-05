@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Http\Livewire\Theme;
+namespace GateGem\Generator\Http\Livewire\Theme;
 
 use Illuminate\Support\Facades\Artisan;
-use LaraIO\Core\Livewire\Modal;
+use GateGem\Core\Livewire\Modal;
 
 class CreateFile extends Modal
 {

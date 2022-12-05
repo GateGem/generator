@@ -1,10 +1,10 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithGeneratorStub;
-use LaraIO\Generator\Support\Stub;
+use GateGem\Generator\Traits\WithGeneratorStub;
+use GateGem\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 
 class MiddlewareMakeCommand extends Command

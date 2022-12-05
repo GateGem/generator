@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithGeneratorStub;
+use GateGem\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -26,7 +26,7 @@ class MigrateResetCommand extends Command
     protected $description = 'Reset the modules migrations.';
 
     /**
-     * @var \LaraIO\Generator\Contracts\RepositoryInterface
+     * @var \GateGem\Generator\Contracts\RepositoryInterface
      */
     protected $module;
 

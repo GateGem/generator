@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use LaraIO\Core\Livewire\Component;
+use GateGem\Core\Livewire\Component;
 
 class $CLASS$ extends Component
 {

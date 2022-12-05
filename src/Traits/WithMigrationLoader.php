@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Traits;
+namespace GateGem\Generator\Traits;
 
 trait WithMigrationLoader
 {

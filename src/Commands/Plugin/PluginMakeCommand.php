@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Plugin;
+namespace GateGem\Generator\Commands\Plugin;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithGeneratorStub;
+use GateGem\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

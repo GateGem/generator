@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Commands;
+namespace GateGem\Generator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;

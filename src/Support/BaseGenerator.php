@@ -1,11 +1,11 @@
 <?php
 
-namespace LaraIO\Generator\Support;
+namespace GateGem\Generator\Support;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Console\Command as Console;
 use Illuminate\Filesystem\Filesystem;
-use LaraIO\Generator\Traits\WithGenerator;
+use GateGem\Generator\Traits\WithGenerator;
 
 class BaseGenerator extends Generator
 {

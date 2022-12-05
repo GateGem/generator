@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Core\Facades\Module;
+use GateGem\Core\Facades\Module;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -24,7 +24,7 @@ class MigrateCommand extends Command
     protected $description = 'Migrate the migrations from the specified module or from all modules.';
 
     /**
-     * @var \LaraIO\Generator\Contracts\RepositoryInterface
+     * @var \GateGem\Generator\Contracts\RepositoryInterface
      */
     protected $module;
 

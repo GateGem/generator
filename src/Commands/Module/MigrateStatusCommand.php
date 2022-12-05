@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Migrations\Migrator;
+use GateGem\Generator\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -24,7 +24,7 @@ class MigrateStatusCommand extends Command
     protected $description = 'Status for all module migrations';
 
     /**
-     * @var \LaraIO\Generator\Contracts\RepositoryInterface
+     * @var \GateGem\Generator\Contracts\RepositoryInterface
      */
     protected $module;
 

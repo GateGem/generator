@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use LaraIO\Core\Support\Core\ActionBase;
+use GateGem\Core\Support\Core\ActionBase;
 
 class $CLASS$ extends ActionBase
 {

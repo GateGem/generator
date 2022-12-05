@@ -1,7 +1,7 @@
 <?php
 
-use LaraIO\Generator\FileActivator;
-use LaraIO\Generator\Commands;
+use GateGem\Generator\FileActivator;
+use GateGem\Generator\Commands;
 
 return [
     /*
@@ -14,7 +14,7 @@ return [
     */
 
     'namespace' => [
-        'root' => 'LaraApp',
+        'root' => 'GateApp',
         'theme' => 'Themes',
         'module' => 'Modules',
         'plugin' => 'Plugins',
@@ -31,7 +31,7 @@ return [
 
     'stubs' => [
         'enabled' => false,
-        'path' => base_path('vendor/laraio/generator/src/Commands/stubs'),
+        'path' => base_path('vendor/GateGem/generator/src/Commands/stubs'),
         'files' => [
             'common' => [
                 'index-html',
@@ -547,7 +547,7 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'laraio',
+        'vendor' => 'GateGem',
         'author' => [
             'name' => 'Nguyen Van Hau',
             'email' => 'nguyenvanhaudev@gmail.com',

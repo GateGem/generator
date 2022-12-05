@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

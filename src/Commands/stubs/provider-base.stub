@@ -3,8 +3,8 @@
 namespace $NAMESPACE$;
 
 use Illuminate\Support\ServiceProvider;
-use LaraIO\Core\Support\Core\ServicePackage;
-use LaraIO\Core\Traits\WithServiceProvider;
+use GateGem\Core\Support\Core\ServicePackage;
+use GateGem\Core\Traits\WithServiceProvider;
 
 class $STUDLY_NAME$ServiceProvider extends ServiceProvider
 {

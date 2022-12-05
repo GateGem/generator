@@ -1,10 +1,10 @@
 <?php
 
-namespace LaraIO\Generator\Traits;
+namespace GateGem\Generator\Traits;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use LaraIO\Generator\Support\Decomposer;
+use GateGem\Generator\Support\Decomposer;
 
 trait ComponentParser
 {

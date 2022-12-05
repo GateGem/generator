@@ -1,13 +1,13 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
-use LaraIO\Generator\Support\Config\GenerateConfigReader;
-use LaraIO\Generator\Support\Stub;
+use GateGem\Generator\Support\Config\GenerateConfigReader;
+use GateGem\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithGeneratorStub;
+use GateGem\Generator\Traits\WithGeneratorStub;
 
 class ListenerMakeCommand extends Command
 {

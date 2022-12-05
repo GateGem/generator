@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithModuleCommand;
+use GateGem\Generator\Traits\WithModuleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
 class UpdateCommand extends Command
@@ -37,7 +37,7 @@ class UpdateCommand extends Command
             return 0;
         }
 
-        /** @var \LaraIO\Generator\Module $module */
+        /** @var \GateGem\Generator\Module $module */
         foreach ($this->laravel['modules']->getOrdered() as $module) {
             $this->updateModule($module->getName());
         }

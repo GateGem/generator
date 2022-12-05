@@ -1,12 +1,12 @@
 <?php
 
-namespace LaraIO\Generator\Traits;
+namespace GateGem\Generator\Traits;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use LaraIO\Core\Facades\Core;
+use GateGem\Core\Facades\Core;
 
 trait WithGeneratorStub
 {
@@ -290,7 +290,7 @@ trait WithGeneratorStub
             if ($dataInfo = $this->getDataInfo()) {
                 $this->_namespace =  $dataInfo->getValue('namespace');
             } else {
-                $this->_namespace = config('generator.namespace.root', config('core.appdir.root', 'LaraApp')) . '\\' . config('generator.namespace.' . $this->getBaseTypeName(), config('core.appdir.' . $this->getBaseTypeName())) . "\\" . $this->getStudlyNameReplacement();
+                $this->_namespace = config('generator.namespace.root', config('core.appdir.root', 'GateApp')) . '\\' . config('generator.namespace.' . $this->getBaseTypeName(), config('core.appdir.' . $this->getBaseTypeName())) . "\\" . $this->getStudlyNameReplacement();
             }
         }
         return $this->_namespace;

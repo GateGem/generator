@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Support\Migrations;
+namespace GateGem\Generator\Support\Migrations;
 
 class NameParser
 {

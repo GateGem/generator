@@ -1,10 +1,10 @@
 <?php
 
-namespace LaraIO\Generator\Traits;
+namespace GateGem\Generator\Traits;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use LaraIO\Core\Facades\Module;
+use GateGem\Core\Facades\Module;
 
 trait CommandHelper
 {

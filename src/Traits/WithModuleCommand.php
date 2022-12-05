@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Traits;
+namespace GateGem\Generator\Traits;
 
 use Illuminate\Support\Str;
-use LaraIO\Core\Facades\Module;
+use GateGem\Core\Facades\Module;
 
 trait WithModuleCommand
 {

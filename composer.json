@@ -1,14 +1,14 @@
 {
-  "name": "laraio/generator",
-  "description": "laraio/generator support command generator module plugin theme and file",
+  "name": "gategem/generator",
+  "description": "GateGem/generator support command generator module plugin theme and file",
   "keywords": [
-    "LaraIO",
+    "GateGem",
     "laravel",
     "core",
     "wordpress",
     "Lara Platform"
   ],
-  "homepage": "https://github.com/LaraIO/generator",
+  "homepage": "https://github.com/GateGem/generator",
   "license": "MIT",
   "authors": [
     {
@@ -18,18 +18,18 @@
     }
   ],
   "require": {
-    "laraio/core": "*"
+    "GateGem/core": "*"
   },
   "require-dev": {},
   "autoload": {
     "psr-4": {
-      "LaraIO\\Generator\\": "src",
-      "LaraIO\\Generator\\Database\\Factories\\": "database/factories"
+      "GateGem\\Generator\\": "src",
+      "GateGem\\Generator\\Database\\Factories\\": "database/factories"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LaraIO\\Generator\\Tests\\": "tests"
+      "GateGem\\Generator\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -44,10 +44,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "LaraIO\\Generator\\GeneratorServiceProvider"
+        "GateGem\\Generator\\GeneratorServiceProvider"
       ],
       "aliases": {
-        "LaraGenerator": "LaraIO\\Generator\\Facades\\Generator"
+        "LaraGenerator": "GateGem\\Generator\\Facades\\Generator"
       }
     }
   },

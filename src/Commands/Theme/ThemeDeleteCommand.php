@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Theme;
+namespace GateGem\Generator\Commands\Theme;
 
 use Illuminate\Console\Command;
-use LaraIO\Core\Facades\Theme;
+use GateGem\Core\Facades\Theme;
 use Symfony\Component\Console\Input\InputArgument;
 
 class ThemeDeleteCommand extends Command

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Support\Config;
+namespace GateGem\Generator\Support\Config;
 
 class GeneratorPath
 {

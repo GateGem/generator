@@ -1,10 +1,10 @@
 <?php
 
-namespace LaraIO\Generator;
+namespace GateGem\Generator;
 
 use Illuminate\Support\ServiceProvider;
-use LaraIO\Core\Support\Core\ServicePackage;
-use LaraIO\Core\Traits\WithServiceProvider;
+use GateGem\Core\Support\Core\ServicePackage;
+use GateGem\Core\Traits\WithServiceProvider;
 
 class GeneratorServiceProvider extends ServiceProvider
 {

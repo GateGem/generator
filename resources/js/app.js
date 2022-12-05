@@ -1,1 +1,1 @@
-console.log('LaraIO\Generator');
+console.log('GateGem\Generator');

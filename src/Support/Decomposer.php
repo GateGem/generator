@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraIO\Generator\Support;
+namespace GateGem\Generator\Support;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;

@@ -1,9 +1,9 @@
 <?php
 
-namespace LaraIO\Generator\Commands\Module;
+namespace GateGem\Generator\Commands\Module;
 
 use Illuminate\Console\Command;
-use LaraIO\Generator\Traits\WithGeneratorStub;
+use GateGem\Generator\Traits\WithGeneratorStub;
 use Symfony\Component\Console\Input\InputArgument;
 
 final class NotificationMakeCommand  extends Command
