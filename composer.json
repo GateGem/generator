@@ -47,7 +47,7 @@
         "GateGem\\Generator\\GeneratorServiceProvider"
       ],
       "aliases": {
-        "GateGenerator": "GateGem\\Generator\\Facades\\Generator"
+        "GateGemGenerator": "GateGem\\Generator\\Facades\\Generator"
       }
     }
   },

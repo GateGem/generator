@@ -1,4 +1,4 @@
-# This is Lara Platform Generator
+# This is GateGem Generator
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/GateGem/generator.svg?style=flat-square)](https://packagist.org/packages/GateGem/generator)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/GateGem/generator/run-tests?label=tests)](https://github.com/GateGem/generator/actions?query=workflow%3Arun-tests+branch%3Amain)
