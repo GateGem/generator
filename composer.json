@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "gategem/core": "*"
+    "gategem/core": "^1.0.0"
   },
   "require-dev": {},
   "autoload": {
