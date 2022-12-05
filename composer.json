@@ -1,12 +1,12 @@
 {
   "name": "gategem/generator",
-  "description": "GateGem/generator support command generator module plugin theme and file",
+  "description": "laravel support generator module plugin theme hook. like wordpress.",
   "keywords": [
     "GateGem",
     "laravel",
     "core",
     "wordpress",
-    "Lara Platform"
+    "GateGem Platform"
   ],
   "homepage": "https://github.com/GateGem/generator",
   "license": "MIT",
