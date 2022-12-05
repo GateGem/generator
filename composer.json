@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "GateGem/core": "*"
+    "gategem/core": "*"
   },
   "require-dev": {},
   "autoload": {
@@ -47,7 +47,7 @@
         "GateGem\\Generator\\GeneratorServiceProvider"
       ],
       "aliases": {
-        "LaraGenerator": "GateGem\\Generator\\Facades\\Generator"
+        "GateGenerator": "GateGem\\Generator\\Facades\\Generator"
       }
     }
   },
