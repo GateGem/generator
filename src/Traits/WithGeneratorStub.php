@@ -84,7 +84,9 @@ trait WithGeneratorStub
      */
     public function getBaseName()
     {
-        return  $this->_base_name ?? ($this->_base_name = Str::studly($this->argument($this->getBaseTypeName())));
+        if (!$this->_base_name)
+            $this->_base_name = $this->getSystemBase()->getUsed();
+        return $this->_base_name ?? ($this->_base_name = Str::studly($this->argument($this->getBaseTypeName())));
     }
     public function getDataInfo()
     {

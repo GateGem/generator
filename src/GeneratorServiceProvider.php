@@ -28,11 +28,6 @@ class GeneratorServiceProvider extends ServiceProvider
     }
     public function extending()
     {
-        add_filter('filter_table_option_plugin', function ($prev) {
-            if (function_exists('Plugins_Test3_Hello'))
-                Plugins_Test3_Hello();
-            return $prev;
-        });
         add_filter('filter_table_option_module', function ($prev) {
             $prev['action']['append'] = [
                 ...$prev['action']['append'],
@@ -119,9 +114,9 @@ class GeneratorServiceProvider extends ServiceProvider
     }
     public function packageRegistered()
     {
-        add_link_symbolic(__DIR__ . '/../public', public_path('modules/generator'));
-        add_asset_js(asset('modules/generator/js/generator.js'), '', 0);
-        add_asset_css(asset('modules/generator/css/generator.css'), '',  0);
+        add_link_symbolic(__DIR__ . '/../public', public_path('modules/gate-generator'));
+        add_asset_js(asset('modules/gate-generator/js/gate-generator.js'), '', 0);
+        add_asset_css(asset('modules/gate-generator/css/gate-generator.css'), '',  0);
 
         $this->registerMenu();
         $this->extending();
@@ -129,7 +124,7 @@ class GeneratorServiceProvider extends ServiceProvider
     private function bootGate()
     {
         if (!$this->app->runningInConsole()) {
-            add_filter('permission_custom', function ($prev) {
+            add_filter('core_auth_permission_custom', function ($prev) {
                 return [
                     ...$prev,
                     "core.module.generator",

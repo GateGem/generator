@@ -447,6 +447,52 @@ return [
                     'LOWER_NAME',
                 ]
             ],
+            'migration/create' => [
+                'path' => 'migration',
+                'name' => '$FILE_MIGRATION$.php',
+                'replacements' => [
+                    'TABLE',
+                    'FILE_MIGRATION',
+                    'FIELDS'
+                ]
+            ],
+            'migration/add' => [
+                'path' => 'migration',
+                'name' => '$FILE_MIGRATION$.php',
+                'replacements' => [
+                    'TABLE',
+                    'FILE_MIGRATION',
+                    'FIELDS_UP',
+                    'FIELDS_DOWN'
+                ]
+            ],
+            'migration/delete' => [
+                'path' => 'migration',
+                'name' => '$FILE_MIGRATION$.php',
+                'replacements' => [
+                    'TABLE',
+                    'FILE_MIGRATION',
+                    'FIELDS_UP',
+                    'FIELDS_DOWN'
+                ]
+            ],
+            'migration/drop' => [
+                'path' => 'migration',
+                'name' => '$FILE_MIGRATION$.php',
+                'replacements' => [
+                    'TABLE',
+                    'FILE_MIGRATION',
+                    'FIELDS_UP',
+                    'FIELDS_DOWN'
+                ]
+            ],
+            'migration/plain' => [
+                'path' => 'migration',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'FILE_MIGRATION',
+                ]
+            ],
         ],
         'gitkeep' => true,
     ],
@@ -523,11 +569,12 @@ return [
         Commands\Module\MigrateStatusCommand::class,
         Commands\Module\MigrationMakeCommand::class,
         Commands\Module\ModelMakeCommand::class,
-        // Commands\Module\SeedCommand::class,
+        //Commands\Module\SeedCommand::class,
         Commands\Module\SeedMakeCommand::class,
         Commands\Module\UnUseCommand::class,
         Commands\Module\UpdateCommand::class,
         Commands\Module\UseCommand::class,
+        Commands\Module\UseInfoCommand::class,
         Commands\Module\ResourceMakeCommand::class,
         Commands\Module\ActionMakeCommand::class,
 
@@ -547,7 +594,7 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'GateGem',
+        'vendor' => 'gateapp',
         'author' => [
             'name' => 'Nguyen Van Hau',
             'email' => 'nguyenvanhaudev@gmail.com',

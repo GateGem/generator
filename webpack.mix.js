@@ -11,5 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js/generator.js')
-    .sass('resources/sass/app.scss', 'public/css/generator.css');
+mix.js('resources/js/app.js', 'public/js/gate-generator.js')
+    .sass('resources/sass/app.scss', 'public/css/gate-generator.css');

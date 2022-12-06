@@ -40,7 +40,7 @@ class $STUDLY_NAME$ServiceProvider extends ServiceProvider
     private function bootGate()
     {
         if (!$this->app->runningInConsole()) {
-            add_filter('permission_custom', function ($prev) {
+            add_filter('core_auth_permission_custom', function ($prev) {
                 return [
                     ...$prev
                 ];

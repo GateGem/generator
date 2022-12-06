@@ -2,12 +2,10 @@
 
 namespace GateGem\Generator\Commands\Module;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use GateGem\Generator\Traits\WithGeneratorStub;
 use GateGem\Generator\Support\Migrations\NameParser;
 use GateGem\Generator\Support\Migrations\SchemaParser;
-use GateGem\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -63,96 +61,74 @@ class MigrationMakeCommand extends Command
     {
         return new SchemaParser($this->option('fields'));
     }
-
-    /**
-     * @throws \InvalidArgumentException
-     *
-     * @return mixed
-     */
-    protected function getTemplateContents()
-    {
-        $parser = new NameParser($this->argument('name'));
-
-        if ($parser->isCreate()) {
-            return Stub::create('/migration/create.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
-                'fields' => $this->getSchemaParser()->render(),
-            ]);
-        } elseif ($parser->isAdd()) {
-            return Stub::create('/migration/add.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
-                'fields_up' => $this->getSchemaParser()->up(),
-                'fields_down' => $this->getSchemaParser()->down(),
-            ]);
-        } elseif ($parser->isDelete()) {
-            return Stub::create('/migration/delete.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
-                'fields_down' => $this->getSchemaParser()->up(),
-                'fields_up' => $this->getSchemaParser()->down(),
-            ]);
-        } elseif ($parser->isDrop()) {
-            return Stub::create('/migration/drop.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
-                'fields' => $this->getSchemaParser()->render(),
-            ]);
-        }
-
-        return Stub::create('/migration/plain.stub', [
-            'class' => $this->getClass(),
-        ]);
-    }
-
-
-    /**
-     * @return string
-     */
-    protected function getFileName()
-    {
-        return date('Y_m_d_His_') . $this->getSchemaName();
-    }
-
-    /**
-     * @return array|string
-     */
-    private function getSchemaName()
-    {
-        return $this->argument('name');
-    }
-
-    /**
-     * @return string
-     */
-    private function getClassName()
-    {
-        return Str::studly($this->argument('name'));
-    }
-
-    public function getClass()
-    {
-        return $this->getClassName();
-    }
-
     /**
      * Run the command.
      */
     public function handle(): int
     {
-        if (parent::handle() === E_ERROR) {
-            return E_ERROR;
-        }
-
-        if (app()->environment() === 'testing') {
-            return 0;
-        }
-
+        $this->bootWithGeneratorStub();
+        $this->GeneratorFileByStub($this->getStubName());
         return 0;
     }
-    protected function getConfigName()
+    public $table_name;
+    public function getStubName()
     {
-        return 'migration';
+        $parser = new NameParser($this->argument('name'));
+        $this->table_name = $parser->getTableName();
+        if ($parser->isCreate()) {
+            return 'migration/create';
+        } elseif ($parser->isAdd()) {
+            return 'migration/add';
+        } elseif ($parser->isDelete()) {
+            return 'migration/delete';
+        } elseif ($parser->isDrop()) {
+            return 'migration/drop';
+        }
+        return 'migration/plain';
+    }
+    /**
+     * Get replacement for $FILE_MIGRATION$.
+     *
+     * @return string
+     */
+    protected function getFileMigrationReplacement()
+    {
+        return date('Y_m_d_His_') . $this->getFileName();
+    }
+    /**
+     * Get replacement for $TABLE$.
+     *
+     * @return string
+     */
+    protected function getTableReplacement()
+    {
+        return  $this->table_name;
+    }
+    /**
+     * Get replacement for $FIELDS$.
+     *
+     * @return string
+     */
+    protected function getFieldsReplacement()
+    {
+        return $this->getSchemaParser()->render();
+    }
+    /**
+     * Get replacement for $FIELDS_UP$.
+     *
+     * @return string
+     */
+    protected function getFieldsUpReplacement()
+    {
+        return $this->getSchemaParser()->up();
+    }
+    /**
+     * Get replacement for $FIELDS_DOWN$.
+     *
+     * @return string
+     */
+    protected function getFieldsDownReplacement()
+    {
+        return $this->getSchemaParser()->down();
     }
 }

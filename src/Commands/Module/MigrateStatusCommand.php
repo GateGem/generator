@@ -2,6 +2,7 @@
 
 namespace GateGem\Generator\Commands\Module;
 
+use GateGem\Core\Facades\Module;
 use Illuminate\Console\Command;
 use GateGem\Generator\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
@@ -35,19 +36,17 @@ class MigrateStatusCommand extends Command
      */
     public function handle(): int
     {
-        $this->module = $this->laravel['modules'];
-
         $name = $this->argument('module');
 
         if ($name) {
-            $module = $this->module->findOrFail($name);
+            $module = Module::find($name);
 
             $this->migrateStatus($module);
 
             return 0;
         }
 
-        foreach ($this->module->getOrdered($this->option('direction')) as $module) {
+        foreach (Module::getData() as $module) {
             $this->line('Running for module: <info>' . $module->getName() . '</info>');
             $this->migrateStatus($module);
         }
@@ -62,12 +61,12 @@ class MigrateStatusCommand extends Command
      */
     protected function migrateStatus($module)
     {
-        // $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
+        $path = $module->getPath(config('generator.migration.path'));
 
-        // $this->call('migrate:status', [
-        //     '--path' => $path,
-        //     '--database' => $this->option('database'),
-        // ]);
+        $this->call('migrate:status', [
+            '--path' => $path,
+            '--database' => $this->option('database'),
+        ]);
     }
 
     /**

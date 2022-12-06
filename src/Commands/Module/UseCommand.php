@@ -2,6 +2,7 @@
 
 namespace GateGem\Generator\Commands\Module;
 
+use GateGem\Core\Facades\Module;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,13 +30,13 @@ class UseCommand extends Command
     {
         $module = Str::studly($this->argument('module'));
 
-        if (!$this->laravel['modules']->has($module)) {
+        if (!Module::has($module)) {
             $this->error("Module [{$module}] does not exists.");
 
             return E_ERROR;
         }
 
-        $this->laravel['modules']->setUsed($module);
+        Module::setUsed($module);
 
         $this->info("Module [{$module}] used successfully.");
 

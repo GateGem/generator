@@ -5,30 +5,35 @@ namespace GateGem\Generator\Commands\Module;
 use GateGem\Core\Facades\Module;
 use Illuminate\Console\Command;
 
-class UnUseCommand extends Command
+class UseInfoCommand extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'module:unuse';
+    protected $name = 'module:use-info';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Forget the used module with module:use';
+    protected $description = 'Use the specified module.';
 
     /**
      * Execute the console command.
      */
     public function handle(): int
     {
-        Module::forgetUsed();
+        $module = Module::getUsed();
 
-        $this->info('Previous module used successfully forgotten.');
+        if (!$module) {
+            $this->error("Module does not used.");
+
+            return E_ERROR;
+        }
+        $this->info("Module used is [{$module}].");
 
         return 0;
     }

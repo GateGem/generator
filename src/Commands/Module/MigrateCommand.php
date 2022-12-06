@@ -24,19 +24,12 @@ class MigrateCommand extends Command
     protected $description = 'Migrate the migrations from the specified module or from all modules.';
 
     /**
-     * @var \GateGem\Generator\Contracts\RepositoryInterface
-     */
-    protected $module;
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle(): int
     {
-        $this->module = $this->laravel['modules'];
-
         $name = $this->argument('module');
 
         if ($name) {
@@ -59,26 +52,26 @@ class MigrateCommand extends Command
     /**
      * Run the migration from the specified module.
      *
-     * @param Module $module
+     * @param \GateGem\Core\Support\Core\DataInfo $module
      */
     protected function migrate($module)
     {
-        // $path = str_replace(base_path(), '', (new Migrator($module, $this->getLaravel()))->getPath());
+        $path = $module->getPath(config('generator.migration.path'));
+        $this->info($path);
+        if ($this->option('subpath')) {
+            $path = $path . "/" . $this->option("subpath");
+        }
 
-        // if ($this->option('subpath')) {
-        //     $path = $path . "/" . $this->option("subpath");
-        // }
+        $this->call('migrate', [
+            '--path' => $path,
+            '--database' => $this->option('database'),
+            '--pretend' => $this->option('pretend'),
+            '--force' => $this->option('force'),
+        ]);
 
-        // $this->call('migrate', [
-        //     '--path' => $path,
-        //     '--database' => $this->option('database'),
-        //     '--pretend' => $this->option('pretend'),
-        //     '--force' => $this->option('force'),
-        // ]);
-
-        // if ($this->option('seed')) {
-        //     $this->call('module:seed', ['module' => $module->getName(), '--force' => $this->option('force')]);
-        // }
+        if ($this->option('seed')) {
+            $this->call('module:seed', ['module' => $module->getName(), '--force' => $this->option('force')]);
+        }
     }
 
     /**
