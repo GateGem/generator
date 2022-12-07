@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "$NAMESPACE$": "src",
+            "$NAMESPACE$\\": "src",
             "$NAMESPACE$\\Database\\Factories\\": "database/factories",
             "$NAMESPACE$\\Database\\Seeders\\": "database/seeders"
         }
