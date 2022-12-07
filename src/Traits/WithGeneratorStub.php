@@ -291,7 +291,8 @@ trait WithGeneratorStub
     public function getNamespaceReplacement()
     {
         if (!$this->_namespace) {
-            if ($dataInfo = $this->getDataInfo()) {
+            $dataInfo = $this->getDataInfo();
+            if ($dataInfo) {
                 $this->_namespace =  $dataInfo->getValue('namespace');
             } else {
                 $this->_namespace = config('generator.namespace.root', config('core.appdir.root', 'GateApp')) . '\\' . config('generator.namespace.' . $this->getBaseTypeName(), config('core.appdir.' . $this->getBaseTypeName())) . "\\" . $this->getStudlyNameReplacement();

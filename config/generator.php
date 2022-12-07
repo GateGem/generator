@@ -1,6 +1,5 @@
 <?php
 
-use GateGem\Generator\FileActivator;
 use GateGem\Generator\Commands;
 
 return [
@@ -528,7 +527,7 @@ return [
         'config' => ['path' => 'config', 'generate' => true, 'only' => ['module']],
         'table' => ['path' => 'config/tables', 'generate' => true, 'only' => ['module']],
         'option' => ['path' => 'config/options', 'generate' => true, 'only' => ['module']],
-        'command' => ['path' => 'src/Console/Commands', 'namespace' => 'Console\\Commands', 'generate' => true, 'only' => ['module']],
+        'command' => ['path' => 'src/Commands', 'namespace' => 'Commands', 'generate' => true, 'only' => ['module']],
         'migration' => ['path' => 'database/migrations', 'namespace' => 'Database\\Migrations', 'generate' => true, 'only' => ['module']],
         'seeder' => ['path' => 'database/seeders', 'namespace' => 'Database\\Seeders', 'generate' => true, 'only' => ['module']],
         'factory' => ['path' => 'database/factories', 'namespace' => 'Database\\Factories', 'generate' => true, 'only' => ['module']],
