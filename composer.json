@@ -17,9 +17,7 @@
       "role": "Developer"
     }
   ],
-  "require": {
-    "gategem/core": "^1.0.1"
-  },
+  "require": {},
   "require-dev": {},
   "autoload": {
     "psr-4": {
