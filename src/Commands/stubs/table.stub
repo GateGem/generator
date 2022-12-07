@@ -1,0 +1,45 @@
+<?php
+
+use GateGem\Core\Livewire\Modal;
+use GateGem\Core\Builder\Form\FieldBuilder;
+
+return [
+    'model' => $NAMESPACE_MODEL$\$CLASS$::class,
+    //'DisableModule' => true,
+    'enableAction' => true,
+    'funcQuery'=>function($query,$request,$$CLASS$Component){
+        return $query;
+    },
+    'action' => [
+        'title' => '#',
+        'add' => true,
+        'edit' => true,
+        'delete' => true,
+        'export' => true,
+        'inport' => true,
+        'append' => [
+            [
+                'title' =>  '$LOWER_NAME$::tables.$LOWER_CLASS$.button.button1',
+                'icon' => '<i class="bi bi-magic"></i>',
+                'permission' => '$LOWER_NAME$.$LOWER_CLASS$.button.button1',
+                'class' => 'btn-primary',
+                'type' => 'update',
+                'action' => function ($id) {
+                    return 'wire:component="$LOWER_NAME$::page.$LOWER_CLASS$.edit({\'dataId\':\'' . $id . '\'})"';
+                }
+            ]
+        ]
+    ],
+    'formSize' => Modal::Small,
+    'fields' => [
+        [
+            'field' => 'slug',
+            'fieldType' => FieldBuilder::Text,
+            'title' => '$LOWER_NAME$::tables.$LOWER_CLASS$.field.slug'
+        ],
+        [
+            'field' => 'name',
+            'title' => '$LOWER_NAME$::tables.$LOWER_CLASS$.field.name'
+        ],
+    ]
+];

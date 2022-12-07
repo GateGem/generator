@@ -493,6 +493,26 @@ return [
                     'FILE_MIGRATION',
                 ]
             ],
+            'table' => [
+                'path' => 'table',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE_MODEL',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                    'LOWER_CLASS'
+                ]
+            ],
+            'option' => [
+                'path' => 'option',
+                'name' => '$CLASS_FILE$.php',
+                'replacements' => [
+                    'CLASS',
+                    'NAMESPACE',
+                    'LOWER_NAME',
+                ]
+            ],
         ],
         'gitkeep' => true,
     ],
@@ -500,10 +520,12 @@ return [
         'base' => ['path' => '', 'namespace' => '', 'generate' => false],
         'src' => ['path' => 'src', 'namespace' => '', 'generate' => false],
         'config' => ['path' => 'config', 'generate' => true, 'only' => ['module']],
+        'table' => ['path' => 'config/tables', 'generate' => true, 'only' => ['module']],
+        'option' => ['path' => 'config/options', 'generate' => true, 'only' => ['module']],
         'command' => ['path' => 'src/Console/Commands', 'namespace' => 'Console\\Commands', 'generate' => true, 'only' => ['module']],
-        'migration' => ['path' => 'Database/Migrations', 'namespace' => 'Database\\Migrations', 'generate' => true, 'only' => ['module']],
-        'seeder' => ['path' => 'Database/Seeders', 'namespace' => 'Database\\Seeders', 'generate' => true, 'only' => ['module']],
-        'factory' => ['path' => 'Database/factories', 'namespace' => 'Database\\Factories', 'generate' => true, 'only' => ['module']],
+        'migration' => ['path' => 'database/migrations', 'namespace' => 'Database\\Migrations', 'generate' => true, 'only' => ['module']],
+        'seeder' => ['path' => 'database/seeders', 'namespace' => 'Database\\Seeders', 'generate' => true, 'only' => ['module']],
+        'factory' => ['path' => 'database/factories', 'namespace' => 'Database\\Factories', 'generate' => true, 'only' => ['module']],
         'model' => ['path' => 'src/Models', 'namespace' => 'Models', 'generate' => true, 'only' => ['module']],
         'routes' => ['path' => 'routes', 'generate' => true, 'only' => ['module']],
         'controller' => ['path' => 'src/Http/Controllers', 'namespace' => 'Http\\Controllers', 'generate' => true, 'only' => ['module']],
@@ -577,6 +599,9 @@ return [
         Commands\Module\UseInfoCommand::class,
         Commands\Module\ResourceMakeCommand::class,
         Commands\Module\ActionMakeCommand::class,
+        Commands\Module\OptionMakeCommand::class,
+        Commands\Module\TableMakeCommand::class,
+
 
         Commands\Theme\ThemeDeleteCommand::class,
         Commands\Theme\ThemeMakeCommand::class,

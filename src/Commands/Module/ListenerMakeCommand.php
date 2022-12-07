@@ -2,8 +2,6 @@
 
 namespace GateGem\Generator\Commands\Module;
 
-use GateGem\Generator\Support\Config\GenerateConfigReader;
-use GateGem\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Console\Command;

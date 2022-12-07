@@ -2,7 +2,6 @@
 
 namespace GateGem\Generator\Commands\Module;
 
-use GateGem\Generator\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Console\Command;
 use GateGem\Generator\Traits\WithGeneratorStub;

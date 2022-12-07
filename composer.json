@@ -24,7 +24,8 @@
   "autoload": {
     "psr-4": {
       "GateGem\\Generator\\": "src",
-      "GateGem\\Generator\\Database\\Factories\\": "database/factories"
+      "GateGem\\Generator\\Database\\Factories\\": "database/factories",
+      "GateGem\\Generator\\Database\\Seeders\\": "database/seeders"
     }
   },
   "autoload-dev": {

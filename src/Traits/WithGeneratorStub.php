@@ -63,7 +63,6 @@ trait WithGeneratorStub
     ) {
         $this->filesystem = $filesystem ?? $this->laravel['files'];
         $this->GeneratorConfig = config('generator');
-        $this->info('bootWithGeneratorStub');
     }
     public function getBaseTypeName()
     {
@@ -85,8 +84,10 @@ trait WithGeneratorStub
     public function getBaseName()
     {
         if (!$this->_base_name)
+            $this->_base_name = Str::studly($this->argument($this->getBaseTypeName()));
+        if (!$this->_base_name)
             $this->_base_name = $this->getSystemBase()->getUsed();
-        return $this->_base_name ?? ($this->_base_name = Str::studly($this->argument($this->getBaseTypeName())));
+        return $this->_base_name;
     }
     public function getDataInfo()
     {

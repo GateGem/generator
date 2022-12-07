@@ -2,13 +2,14 @@
 
 namespace GateGem\Generator\Commands\Module;
 
+use GateGem\Core\Facades\Module;
+use GateGem\Generator\Traits\WithGeneratorStub;
 use Illuminate\Console\Command;
-use GateGem\Generator\Traits\WithModuleCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
 class UpdateCommand extends Command
 {
-    use WithModuleCommand;
+    use WithGeneratorStub;
 
     /**
      * The console command name.
@@ -29,7 +30,7 @@ class UpdateCommand extends Command
      */
     public function handle(): int
     {
-        $name = $this->argument('module');
+        $name = $this->getBaseName();
 
         if ($name) {
             $this->updateModule($name);
@@ -37,8 +38,7 @@ class UpdateCommand extends Command
             return 0;
         }
 
-        /** @var \GateGem\Generator\Module $module */
-        foreach ($this->laravel['modules']->getOrdered() as $module) {
+        foreach (Module::getData() as $module) {
             $this->updateModule($module->getName());
         }
 
@@ -48,8 +48,7 @@ class UpdateCommand extends Command
     protected function updateModule($name)
     {
         $this->line('Running for module: <info>' . $name . '</info>');
-
-        $this->laravel['modules']->update($name);
+        Module::update($name);
 
         $this->info("Module [{$name}] updated successfully.");
     }

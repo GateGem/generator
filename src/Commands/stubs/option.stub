@@ -1,0 +1,20 @@
+<?php
+
+use GateGem\Core\Builder\Form\FieldBuilder;
+
+return [
+    'icon' => '',
+    'title' => '$CLASS$',
+    'fields'=>[
+        [
+            'field' => '$CLASS_FILE$_param',
+            'fieldType' => FieldBuilder::Text,
+            'title' => '$LOWER_NAME$ Param',
+        ],
+        [
+            'field' => '$CLASS_FILE$_param1',
+            'fieldType' => FieldBuilder::Text,
+            'title' => '$LOWER_NAME$ Param',
+        ],
+    ]
+];
