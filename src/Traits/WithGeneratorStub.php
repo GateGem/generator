@@ -212,6 +212,7 @@ trait WithGeneratorStub
                 $rs = $this->ProcessConvertClass($replacements['CLASS']);
                 $replacements['CLASS'] = $rs['CLASS'];
                 $replacements['CLASS_FILE'] = $replacements['CLASS'];
+                $replacements['LOWER_CLASS_FILE'] = Str::lower($replacements['CLASS']);
                 if ($rs['NAMESPACE']) {
                     $replacements['NAMESPACE'] = $replacements['NAMESPACE'] . '\\' . $rs['NAMESPACE'];
                     $replacements['CLASS_FILE'] = $rs['NAMESPACE'] . '\\' . $rs['CLASS'];

@@ -45,6 +45,7 @@ return [
             'module' => [
                 'routes/web',
                 'routes/api',
+                'routes/admin',
                 'composer',
                 'provider-base',
                 'json'
@@ -100,6 +101,11 @@ return [
             'routes/api' =>  [
                 'path' => 'routes',
                 'name' => 'api.php',
+                'replacements' => ['LOWER_NAME']
+            ],
+            'routes/admin' =>  [
+                'path' => 'routes',
+                'name' => 'admin.php',
                 'replacements' => ['LOWER_NAME']
             ],
             'provider-base' => [
@@ -495,7 +501,7 @@ return [
             ],
             'table' => [
                 'path' => 'table',
-                'name' => '$CLASS_FILE$.php',
+                'name' => '$LOWER_CLASS_FILE$.php',
                 'replacements' => [
                     'CLASS',
                     'NAMESPACE_MODEL',
@@ -506,7 +512,7 @@ return [
             ],
             'option' => [
                 'path' => 'option',
-                'name' => '$CLASS_FILE$.php',
+                'name' => '$LOWER_CLASS_FILE$.php',
                 'replacements' => [
                     'CLASS',
                     'NAMESPACE',

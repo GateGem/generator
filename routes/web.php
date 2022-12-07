@@ -11,6 +11,3 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-add_route_admin(function(){
-
-});

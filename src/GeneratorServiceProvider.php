@@ -23,8 +23,7 @@ class GeneratorServiceProvider extends ServiceProvider
             ->hasHelpers()
             ->hasAssets()
             ->hasTranslations()
-            ->runsMigrations()
-            ->hasRoutes('web');
+            ->runsMigrations();
     }
     public function extending()
     {
