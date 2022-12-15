@@ -114,8 +114,8 @@ class GeneratorServiceProvider extends ServiceProvider
     public function packageRegistered()
     {
         add_link_symbolic(__DIR__ . '/../public', public_path('modules/gate-generator'));
-        add_asset_js(asset('modules/gate-generator/js/gate-generator.js'), '', 0);
-        add_asset_css(asset('modules/gate-generator/css/gate-generator.css'), '',  0);
+        add_asset_js(asset('modules/gate-generator/js/gate-generator.js'), '', 10);
+        add_asset_css(asset('modules/gate-generator/css/gate-generator.css'), '',10);
 
         $this->registerMenu();
         $this->extending();
