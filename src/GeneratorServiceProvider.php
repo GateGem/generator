@@ -2,9 +2,13 @@
 
 namespace GateGem\Generator;
 
+use GateGem\Core\Facades\GateConfig;
+use GateGem\Core\Support\Config\ButtonConfig;
+use GateGem\Core\Support\Config\ConfigManager;
 use Illuminate\Support\ServiceProvider;
 use GateGem\Core\Support\Core\ServicePackage;
 use GateGem\Core\Traits\WithServiceProvider;
+use Illuminate\Support\Facades\Log;
 
 class GeneratorServiceProvider extends ServiceProvider
 {
@@ -28,79 +32,67 @@ class GeneratorServiceProvider extends ServiceProvider
     public function extending()
     {
         add_filter('filter_table_option_module', function ($prev) {
-            $prev['action']['append'] = [
-                ...$prev['action']['append'],
-                [
-                    'title' => 'generator::module.action.createFile',
-                    'icon' => '<i class="bi bi-magic"></i>',
-                    'class' => 'btn-primary',
-                    'permission' => 'core.module.generator.file',
-                    'type' => 'update',
-                    'action' => function ($module) {
-                        return 'wire:component="generator::module.create-file({\'module\':\'' . $module . '\'})"';
-                    }
-                ], [
-                    'title' => 'generator::module.action.create',
-                    'icon' => '<i class="bi bi-magic"></i>',
-                    'class' => 'btn-primary',
-                    'permission' => 'core.module.generator',
-                    'type' => 'new',
-                    'action' => function () {
-                        return 'wire:component="generator::module.create()"';
-                    }
-                ]
+            if (!isset($prev[ConfigManager::BUTTON_APPEND])) $prev[ConfigManager::BUTTON_APPEND] = [];
+            $prev[ConfigManager::BUTTON_APPEND] = [
+                ...$prev[ConfigManager::BUTTON_APPEND],
+                GateConfig::Button('generator::module.action.createFile')
+                    ->setIcon('<i class="bi bi-magic"></i>')
+                    ->setClass('btn btn-sm btn-primary')
+                    ->setPermission('core.module.generator.file')
+                    ->setType(ButtonConfig::TYPE_UPDATE)
+                    ->setDoComponent('generator::module.create-file', function ($module) {
+                        return "{'module':'" . $module . "'}";
+                    }),
+                GateConfig::Button('generator::module.action.create')
+                    ->setIcon('<i class="bi bi-magic"></i>')
+                    ->setClass('btn btn-sm btn-primary')
+                    ->setPermission('core.module.generator')
+                    ->setType(ButtonConfig::TYPE_ADD)
+                    ->setDoComponent('generator::module.create')
+
             ];
             return $prev;
         });
         add_filter('filter_table_option_plugin', function ($prev) {
-            $prev['action']['append'] = [
-                ...$prev['action']['append'],
-                // [
-                //     'title' => 'generator::plugin.action.createFile',
-                //     'icon' => '<i class="bi bi-magic"></i>',
-                //     'class' => 'btn-primary',
-                //     'permission' => 'core.plugin.generator.file',
-                //     'type' => 'update',
-                //     'action' => function ($plugin) {
-                //         return 'wire:component="generator::plugin.create-file({\'plugin\':\'' . $plugin . '\'})"';
-                //     }
-                // ], 
-                [
-                    'title' => 'generator::plugin.action.create',
-                    'icon' => '<i class="bi bi-magic"></i>',
-                    'class' => 'btn-primary',
-                    'permission' => 'core.plugin.generator',
-                    'type' => 'new',
-                    'action' => function () {
-                        return 'wire:component="generator::plugin.create()"';
-                    }
-                ]
+            if (!isset($prev[ConfigManager::BUTTON_APPEND])) $prev[ConfigManager::BUTTON_APPEND] = [];
+            $prev[ConfigManager::BUTTON_APPEND] = [
+                ...$prev[ConfigManager::BUTTON_APPEND],
+                // GateConfig::Button('generator::plugin.action.createFile')
+                //     ->setIcon('<i class="bi bi-magic"></i>')
+                //     ->setClass('btn btn-sm btn-primary')
+                //     ->setPermission('core.plugin.generator.file')
+                //     ->setType(ButtonConfig::TYPE_UPDATE)
+                //     ->setDoComponent('generator::plugin.create-file', function ($plugin) {
+                //         return "{'plugin':'" . $plugin . "'}";
+                //     }),
+                GateConfig::Button('generator::plugin.action.create')
+                    ->setIcon('<i class="bi bi-magic"></i>')
+                    ->setClass('btn btn-sm btn-primary')
+                    ->setPermission('core.plugin.generator')
+                    ->setType(ButtonConfig::TYPE_ADD)
+                    ->setDoComponent('generator::plugin.create')
             ];
             return $prev;
         });
         add_filter('filter_table_option_theme', function ($prev) {
-            $prev['action']['append'] = [
-                ...$prev['action']['append'],
-                // [
-                //     'title' => 'generator::theme.action.createFile',
-                //     'icon' => '<i class="bi bi-magic"></i>',
-                //     'class' => 'btn-primary',
-                //     'permission' => 'core.theme.generator.file',
-                //     'type' => 'update',
-                //     'action' => function ($theme) {
-                //         return 'wire:component="generator::theme.create-file({\'theme\':\'' . $theme . '\'})"';
-                //     }
-                // ], 
-                [
-                    'title' => 'generator::theme.action.create',
-                    'icon' => '<i class="bi bi-magic"></i>',
-                    'class' => 'btn-primary',
-                    'permission' => 'core.theme.generator',
-                    'type' => 'new',
-                    'action' => function () {
-                        return 'wire:component="generator::theme.create()"';
-                    }
-                ]
+            if (!isset($prev[ConfigManager::BUTTON_APPEND])) $prev[ConfigManager::BUTTON_APPEND] = [];
+            $prev[ConfigManager::BUTTON_APPEND] = [
+                ...$prev[ConfigManager::BUTTON_APPEND],
+                // GateConfig::Button('generator::theme.action.createFile')
+                //     ->setIcon('<i class="bi bi-magic"></i>')
+                //     ->setClass('btn btn-sm btn-primary')
+                //     ->setPermission('core.theme.generator.file')
+                //     ->setType(ButtonConfig::TYPE_UPDATE)
+                //     ->setDoComponent('generator::theme.create-file', function ($theme) {
+                //         return "{'theme':'" . $theme . "'}";
+                //     }),
+                GateConfig::Button('generator::theme.action.create')
+                    ->setIcon('<i class="bi bi-magic"></i>')
+                    ->setClass('btn btn-sm btn-primary')
+                    ->setPermission('core.theme.generator')
+                    ->setType(ButtonConfig::TYPE_ADD)
+                    ->setDoComponent('generator::theme.create')
+
             ];
             return $prev;
         });
@@ -115,7 +107,7 @@ class GeneratorServiceProvider extends ServiceProvider
     {
         add_link_symbolic(__DIR__ . '/../public', public_path('modules/gate-generator'));
         add_asset_js(asset('modules/gate-generator/js/gate-generator.js'), '', 10);
-        add_asset_css(asset('modules/gate-generator/css/gate-generator.css'), '',10);
+        add_asset_css(asset('modules/gate-generator/css/gate-generator.css'), '', 10);
 
         $this->registerMenu();
         $this->extending();
