@@ -53,9 +53,11 @@ return [
                 'function',
                 'layout',
                 'layout-none',
+                'composer2',
                 'json-function'
             ],
             'plugin' => [
+                'composer2',
                 'function',
                 'json-function'
             ]
@@ -113,6 +115,19 @@ return [
                 'replacements' => ['LOWER_NAME', 'NAMESPACE', 'STUDLY_NAME']
             ],
             'composer' => [
+                'name' => 'composer.json',
+                'doblue' => true,
+                'replacements' => [
+                    'LOWER_NAME',
+                    'STUDLY_NAME',
+                    'VENDOR',
+                    'AUTHOR_NAME',
+                    'AUTHOR_EMAIL',
+                    'NAMESPACE',
+                    'BASE_TYPE_LOWER_NAME'
+                ]
+            ],
+            'composer2' => [
                 'name' => 'composer.json',
                 'doblue' => true,
                 'replacements' => [
