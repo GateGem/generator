@@ -1,11 +1,6 @@
 <?php
 
 use GateGem\Core\Builder\Form\FieldBuilder;
+use GateGem\Core\Facades\GateConfig;
 
-return [
-    'enable' => false,
-    'sort' => 0,
-    'icon' => '',
-    'title' => 'Generator',
-    'fields' => []
-];
+return GateConfig::Option('Generator')->Disable()->setSort(1)->setFields([]);
