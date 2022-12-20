@@ -1,45 +1,35 @@
 <?php
-
+use GateGem\Core\Facades\GateConfig;
+use GateGem\Core\Http\Action\Test;
 use GateGem\Core\Livewire\Modal;
-use GateGem\Core\Builder\Form\FieldBuilder;
+use GateGem\Core\Support\Config\ButtonConfig;
 
-return [
-    'model' => $NAMESPACE_MODEL$\$CLASS$::class,
-    //'DisableModule' => true,
-    'enableAction' => true,
-    'funcQuery'=>function($query,$request,$$CLASS$Component){
-        return $query;
-    },
-    'action' => [
-        'title' => '#',
-        'add' => true,
-        'edit' => true,
-        'delete' => true,
-        'export' => true,
-        'inport' => true,
-        'append' => [
-            [
-                'title' =>  '$LOWER_NAME$::tables.$LOWER_CLASS$.button.button1',
-                'icon' => '<i class="bi bi-magic"></i>',
-                'permission' => '$LOWER_NAME$.$LOWER_CLASS$.button.button1',
-                'class' => 'btn-primary',
-                'type' => 'update',
-                'action' => function ($id) {
-                    return 'wire:component="$LOWER_NAME$::page.$LOWER_CLASS$.edit({\'dataId\':\'' . $id . '\'})"';
-                }
-            ]
-        ]
-    ],
-    'formSize' => Modal::Small,
-    'fields' => [
-        [
-            'field' => 'slug',
-            'fieldType' => FieldBuilder::Text,
-            'title' => '$LOWER_NAME$::tables.$LOWER_CLASS$.field.slug'
-        ],
-        [
-            'field' => 'name',
-            'title' => '$LOWER_NAME$::tables.$LOWER_CLASS$.field.name'
-        ],
-    ]
-];
+return GateConfig::NewItem()
+    ->setModel($NAMESPACE_MODEL$\$CLASS$::class)
+    ->setButtonAppend([
+        GateConfig::Button('$LOWER_NAME$::tables.$LOWER_CLASS$.button.button1')
+            ->setIcon('<i class="bi bi-magic"></i>')
+            ->setPermission('$LOWER_NAME$.$LOWER_CLASS$.button.button1')
+            ->setDoAction(Test::class)
+            ->setType(ButtonConfig::TYPE_ADD),
+        GateConfig::Button('$LOWER_NAME$::tables.$LOWER_CLASS$.button.button2')
+            ->setIcon('<i class="bi bi-magic"></i>')
+            ->setClass('btn btn-primary btn-sm')
+            ->setPermission('$LOWER_NAME$.$LOWER_CLASS$.button.button2')
+            ->setDoComponent('$LOWER_NAME$::$LOWER_CLASS$.page.index', function ($id) {
+                return "{'dataId':" . $id . "}";
+            })
+            ->setType(ButtonConfig::TYPE_UPDATE)
+    ])
+    ->setForm(GateConfig::Form()->setSize(Modal::ExtraLarge))
+    ->setFields([
+        GateConfig::Field('group')
+            ->setFieldType(FieldBuilder::Text)
+            ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.group'),
+        GateConfig::Field('slug')
+            ->setFieldType(FieldBuilder::Text)
+            ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.slug'),
+        GateConfig::Field('name')
+            ->setFieldType(FieldBuilder::Textarea)
+            ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.name')
+    ]);

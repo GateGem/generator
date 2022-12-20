@@ -1,20 +1,13 @@
 <?php
 
 use GateGem\Core\Builder\Form\FieldBuilder;
+use GateGem\Core\Facades\GateConfig;
 
-return [
-    'icon' => '',
-    'title' => '$CLASS$',
-    'fields'=>[
-        [
-            'field' => '$CLASS_FILE$_param',
-            'fieldType' => FieldBuilder::Text,
-            'title' => '$LOWER_NAME$ Param',
-        ],
-        [
-            'field' => '$CLASS_FILE$_param1',
-            'fieldType' => FieldBuilder::Text,
-            'title' => '$LOWER_NAME$ Param',
-        ],
-    ]
-];
+return GateConfig::Option('$CLASS$')->Disable()->setSort(1)->setFields([
+     GateConfig::Field('$CLASS_FILE$_param')
+        ->setFieldType(FieldBuilder::Text)
+        ->setTitle('$LOWER_NAME$ Param'),
+     GateConfig::Field('$CLASS_FILE$_param1')
+        ->setFieldType(FieldBuilder::Quill)
+        ->setTitle('$LOWER_NAME$ Param1'),
+]);
