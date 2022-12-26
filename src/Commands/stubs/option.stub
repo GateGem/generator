@@ -5,9 +5,9 @@ use GateGem\Core\Facades\GateConfig;
 
 return GateConfig::Option('$CLASS$')->Disable()->setSort(1)->setFields([
      GateConfig::Field('$CLASS_FILE$_param')
-        ->setFieldType(FieldBuilder::Text)
+        ->setType(FieldBuilder::Text)
         ->setTitle('$LOWER_NAME$ Param'),
      GateConfig::Field('$CLASS_FILE$_param1')
-        ->setFieldType(FieldBuilder::Quill)
+        ->setType(FieldBuilder::Quill)
         ->setTitle('$LOWER_NAME$ Param1'),
 ]);

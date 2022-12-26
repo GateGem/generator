@@ -96,12 +96,7 @@ class GeneratorServiceProvider extends ServiceProvider
             ];
             return $prev;
         });
-        add_filter('core_check_permission', function ($prev, $slug) {
-            if (in_array($slug, ['core.module', 'core.plugin', 'core.theme'])) {
-                return false;
-            }
-            return $prev;
-        }, 20, 2);
+       
         // add_filter('router_admin_prefix', function () {
         //     return '/quan-ly';
         // });

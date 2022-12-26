@@ -24,12 +24,12 @@ return GateConfig::NewItem()
     ->setForm(GateConfig::Form()->setSize(Modal::ExtraLarge))
     ->setFields([
         GateConfig::Field('group')
-            ->setFieldType(FieldBuilder::Text)
+            ->setType(FieldBuilder::Text)
             ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.group'),
         GateConfig::Field('slug')
-            ->setFieldType(FieldBuilder::Text)
+            ->setType(FieldBuilder::Text)
             ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.slug'),
         GateConfig::Field('name')
-            ->setFieldType(FieldBuilder::Textarea)
+            ->setType(FieldBuilder::Textarea)
             ->setTitle('$LOWER_NAME$::tables.$LOWER_CLASS$.field.name')
     ]);
